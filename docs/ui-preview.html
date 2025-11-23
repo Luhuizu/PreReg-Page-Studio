@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>PreReg Page Studio · UI Preview (Static)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-100 text-slate-900">
+  <main class="max-w-6xl mx-auto px-4 py-8 lg:py-10">
+    <div class="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
+      <!-- Header -->
+      <header class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between px-6 py-4 border-b border-slate-200">
+        <div class="flex items-center gap-3">
+          <div class="h-10 w-10 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-xs text-slate-400">
+            Logo
+          </div>
+          <div>
+            <h1 class="text-lg font-semibold tracking-tight">PreReg Page Studio</h1>
+            <p class="text-xs text-slate-500">
+              Game Pre-registration Static Page Config UI · Static preview
+            </p>
+          </div>
+        </div>
+        <div class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[11px] text-slate-500">
+          <span class="h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_0_3px_rgba(16,185,129,0.3)]"></span>
+          Prototype · No-code config interface for landing pages
+        </div>
+      </header>
+
+      <!-- Main layout -->
+      <div class="grid gap-4 lg:grid-cols-2 bg-slate-50 px-4 pb-5 pt-4">
+        <!-- Left: all sections in one scroll -->
+        <section class="space-y-4">
+          <!-- Panel: Basic Info -->
+          <div class="rounded-xl bg-white border border-slate-200 px-5 py-5">
+            <h2 class="text-base font-semibold mb-1">Basic Info</h2>
+            <p class="text-xs text-slate-500 mb-4">
+              Fill in core game information. In the real tool, these values will be used in the generated static page config.
+            </p>
+
+            <div class="space-y-4">
+              <!-- Game Name (Chinese) -->
+              <div class="space-y-1.5">
+                <label class="block text-sm font-medium text-slate-700">
+                  Game Name (Chinese)
+                </label>
+                <input
+                  type="text"
+                  disabled
+                  placeholder="游戏名称"
+                  class="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-500 placeholder:text-slate-300"
+                />
+              </div>
+
+              <!-- Game Name (English) -->
+              <div class="space-y-1.5">
+                <label class="block text-sm font-medium text-slate-700">
+                  Game Name (English)
+                </label>
+                <input
+                  type="text"
+                  disabled
+                  placeholder="Game Name"
+                  class="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-500 placeholder:text-slate-300"
+                />
+              </div>
+
+              <!-- Short Slogan -->
+              <div class="space-y-1.5">
+                <div class="flex items-baseline justify-between gap-2">
+                  <label class="block text-sm font-medium text-slate-700">
+                    Short Slogan
+                  </label>
+                  <span class="text-[11px] text-slate-400">
+                    One-line slogan
+                  </span>
+                </div>
+                <input
+                  type="text"
+                  disabled
+                  placeholder="One-line slogan"
+                  class="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-500 placeholder:text-slate-300"
+                />
+              </div>
+
+              <!-- Short Description -->
+              <div class="space-y-1.5">
+                <div class="flex items-baseline justify-between gap-2">
+                  <label class="block text-sm font-medium text-slate-700">
+                    Short Description
+                  </label>
+                  <span class="text-[11px] text-slate-400">
+                    Brief description for lists/meta
+                  </span>
+                </div>
+                <textarea
+                  disabled
+                  rows="3"
+                  placeholder="Brief description..."
+                  class="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-500 placeholder:text-slate-300 resize-y"
+                ></textarea>
+              </div>
+
+              <!-- Long Description -->
+              <div class="space-y-1.5">
+                <label class="block text-sm font-medium text-slate-700">
+                  Long Description
+                </label>
+                <textarea
+                  disabled
+                  rows="4"
+                  placeholder="Detailed description..."
+                  class="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-500 placeholder:text-slate-300 resize-y"
+                ></textarea>
+              </div>
+
+              <!-- Tags -->
+              <div class="space-y-1.5">
+                <label class="block text-sm font-medium text-slate-700">
+                  Game Genre / Tags
+                </label>
+                <div class="flex flex-wrap gap-2">
+                  <span class="inline-flex items-center rounded-full border border-indigo-500 bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700">
+                    RPG
+                  </span>
+                  <span class="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs text-slate-600">
+                    Action
+                  </span>
+                  <span class="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs text-slate-600">
+                    Strategy
+                  </span>
+                  <span class="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs text-slate-600">
+                    Adventure
+                  </span>
+                  <span class="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs text-slate-600">
+                    Puzzle
+                  </span>
+                  <span class="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs text-slate-600">
+                    Simulation
+                  </span>
+                  <span class="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs text-slate-600">
+                    Sports
+                  </span>
+                  <span class="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs text-slate-600">
+                    Racing
+                  </span>
+                  <span class="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs text-slate-600">
+                    MMO
+                  </span>
+                  <span class="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs text-slate-600">
+                    Card Game
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panel: Pre-registration Settings -->
+          <div class="rounded-xl bg-white border border-slate-200 px-5 py-5">
+            <h2 class="text-base font-semibold mb-1">Pre-registration Settings</h2>
+            <p class="text-xs text-slate-500 mb-4">
+              Configure pre-registration period and optional countdown timer.
+            </p>
+
+            <div class="space-y-4">
+              <!-- Start date -->
+              <div class="space-y-1.5">
+                <label class="block text-sm font-medium text-slate-700">
+                  Pre-reg Start Date
+                </label>
+                <div class="relative">
+                  <input
+                    type="text"
+                    disabled
+                    placeholder="yyyy/月/dd"
+                    class="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 pr-9 text-sm text-slate-500 placeholder:text-slate-300"
+                  />
+                  <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center">
+                    <span class="h-4 w-4 rounded-sm border border-slate-300"></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- End date -->
+              <div class="space-y-1.5">
+                <label class="block text-sm font-medium text-slate-700">
+                  Pre-reg End Date
+                </label>
+                <div class="relative">
+                  <input
+                    type="text"
+                    disabled
+                    placeholder="yyyy/月/dd"
+                    class="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 pr-9 text-sm text-slate-500 placeholder:text-slate-300"
+                  />
+                  <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center">
+                    <span class="h-4 w-4 rounded-sm border border-slate-300"></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Launch date -->
+              <div class="space-y-1.5">
+                <label class="block text-sm font-medium text-slate-700">
+                  Expected Launch Date
+                </label>
+                <div class="relative">
+                  <input
+                    type="text"
+                    disabled
+                    placeholder="yyyy/月/dd"
+                    class="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 pr-9 text-sm text-slate-500 placeholder:text-slate-300"
+                  />
+                  <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center">
+                    <span class="h-4 w-4 rounded-sm border border-slate-300"></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Checkbox -->
+              <label class="flex items-center gap-2 text-sm text-slate-700">
+                <input
+                  type="checkbox"
+                  disabled
+                  class="h-4 w-4 rounded border-slate-300 text-indigo-600"
+                />
+                Show countdown timer on the page
+              </label>
+            </div>
+          </div>
+
+          <!-- Panel: Theme & Style -->
+          <div class="rounded-xl bg-white border border-slate-200 px-5 py-5">
+            <h2 class="text-base font-semibold mb-1">Theme &amp; Style</h2>
+            <p class="text-xs text-slate-500 mb-4">
+              Choose template theme and basic visual style. In the real app, these will update the preview and output config.
+            </p>
+
+            <div class="space-y-4">
+              <!-- Theme radio -->
+              <div class="space-y-2">
+                <div class="text-sm font-medium text-slate-700">Theme</div>
+                <div class="space-y-1.5">
+                  <label class="flex items-center gap-2 text-sm text-slate-700">
+                    <input type="radio" name="theme" checked disabled class="h-4 w-4 text-indigo-600" />
+                    <span>Adventure / Ocean (Template A)</span>
+                  </label>
+                  <label class="flex items-center gap-2 text-sm text-slate-700">
+                    <input type="radio" name="theme" disabled class="h-4 w-4 text-indigo-600" />
+                    <span>Palace / Ancient (Template B)</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Colors -->
+              <div class="grid gap-3 md:grid-cols-2">
+                <!-- Primary color -->
+                <div class="space-y-1.5">
+                  <label class="block text-sm font-medium text-slate-700">
+                    Primary Color
+                  </label>
+                  <div class="flex items-center gap-2">
+                    <div class="h-9 w-9 rounded-md border border-slate-200 bg-[#3B82F6]"></div>
+                    <input
+                      type="text"
+                      disabled
+                      value="#3B82F6"
+                      class="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-500"
+                    />
+                  </div>
+                </div>
+
+                <!-- Secondary color -->
+                <div class="space-y-1.5">
+                  <label class="block text-sm font-medium text-slate-700">
+                    Secondary Color
+                  </label>
+                  <div class="flex items-center gap-2">
+                    <div class="h-9 w-9 rounded-md border border-slate-200 bg-[#8B5CF6]"></div>
+                    <input
+                      type="text"
+                      disabled
+                      value="#8B5CF6"
+                      class="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-500"
+                    />
+                  </div>
+                </div>
+
+                <!-- Button color -->
+                <div class="space-y-1.5">
+                  <label class="block text-sm font-medium text-slate-700">
+                    Button Color
+                  </label>
+                  <div class="flex items-center gap-2">
+                    <div class="h-9 w-9 rounded-md border border-slate-200 bg-[#10B981]"></div>
+                    <input
+                      type="text"
+                      disabled
+                      value="#10B981"
+                      class="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-500"
+                    />
+                  </div>
+                </div>
+
+                <!-- Font -->
+                <div class="space-y-1.5">
+                  <label class="block text-sm font-medium text-slate-700">
+                    Font Family
+                  </label>
+                  <div class="relative">
+                    <select
+                      disabled
+                      class="w-full appearance-none rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 pr-8 text-sm text-slate-500"
+                    >
+                      <option>Noto Sans</option>
+                      <option>System UI</option>
+                      <option>Source Han Sans</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-slate-400">
+                      <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panel: Images & Assets -->
+          <div class="rounded-xl bg-white border border-slate-200 px-5 py-5">
+            <h2 class="text-base font-semibold mb-1">Images &amp; Assets</h2>
+            <p class="text-xs text-slate-500 mb-4">
+              RWD image upload groups for hero background, buttons, logo and icons. Static preview only – buttons are disabled.
+            </p>
+
+            <div class="space-y-4 text-sm">
+              <!-- Hero Background -->
+              <div class="space-y-2">
+                <div class="flex items-baseline gap-2">
+                  <div class="font-medium text-slate-800">Hero Background</div>
+                  <span class="text-[11px] text-rose-500">*</span>
+                </div>
+                <div class="space-y-2 text-xs text-slate-500">
+                  <p>Desktop image · Recommended: 1920x1080</p>
+                  <button class="inline-flex cursor-default items-center rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs text-slate-600">
+                    Upload
+                  </button>
+
+                  <p class="mt-2">Tablet image · Recommended: 1280x720</p>
+                  <button class="inline-flex cursor-default items-center rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs text-slate-600">
+                    Upload
+                  </button>
+
+                  <p class="mt-2">Mobile image · Recommended: 750x1334</p>
+                  <button class="inline-flex cursor-default items-center rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs text-slate-600">
+                    Upload
+                  </button>
+                </div>
+              </div>
+
+              <!-- Main CTA Button Image -->
+              <div class="space-y-2 pt-1 border-t border-slate-100">
+                <div class="flex items-baseline gap-2">
+                  <div class="font-medium text-slate-800">Main Call-to-Action Button Image</div>
+                  <span class="text-[11px] text-rose-500">*</span>
+                </div>
+                <div class="space-y-2 text-xs text-slate-500">
+                  <p>Desktop image · Recommended: 1920x1080</p>
+                  <button class="inline-flex cursor-default items-center rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs text-slate-600">
+                    Upload
+                  </button>
+
+                  <p class="mt-2">Tablet image · Recommended: 1280x720</p>
+                  <button class="inline-flex cursor-default items-center rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs text-slate-600">
+                    Upload
+                  </button>
+
+                  <p class="mt-2">Mobile image · Recommended: 750x1334</p>
+                  <button class="inline-flex cursor-default items-center rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs text-slate-600">
+                    Upload
+                  </button>
+                </div>
+              </div>
+
+              <!-- Game Logo -->
+              <div class="space-y-2 pt-1 border-t border-slate-100">
+                <div class="font-medium text-slate-800">Game Logo</div>
+                <p class="text-xs text-slate-500">Recommended: 512x512</p>
+                <button class="inline-flex cursor-default items-center rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs text-slate-600">
+                  Upload
+                </button>
+              </div>
+
+              <!-- Platform Icons -->
+              <div class="space-y-2 pt-1 border-t border-slate-100">
+                <div class="font-medium text-slate-800">Platform Icons</div>
+                <div class="space-y-2 text-xs text-slate-500">
+                  <p>iOS Icon · Recommended: 1024x1024</p>
+                  <button class="inline-flex cursor-default items-center rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs text-slate-600">
+                    Upload
+                  </button>
+
+                  <p class="mt-2">Android Icon · Recommended: 1024x1024</p>
+                  <button class="inline-flex cursor-default items-center rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs text-slate-600">
+                    Upload
+                  </button>
+                </div>
+              </div>
+
+              <!-- Other Icons -->
+              <div class="space-y-2 pt-1 border-t border-slate-100">
+                <div class="font-medium text-slate-800">Other Generic Icons</div>
+                <p class="text-xs text-slate-500">For rewards, steps, etc.</p>
+
+                <div class="space-y-2 text-xs text-slate-500">
+                  <p>Desktop image · Recommended: 1920x1080</p>
+                  <button class="inline-flex cursor-default items-center rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs text-slate-600">
+                    Upload
+                  </button>
+
+                  <p class="mt-2">Tablet image · Recommended: 1280x720</p>
+                  <button class="inline-flex cursor-default items-center rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs text-slate-600">
+                    Upload
+                  </button>
+
+                  <p class="mt-2">Mobile image · Recommended: 750x1334</p>
+                  <button class="inline-flex cursor-default items-center rounded-md border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs text-slate-600">
+                    Upload
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panel: Preview & Export -->
+          <div class="rounded-xl bg-white border border-slate-200 px-5 py-5 mb-1">
+            <h2 class="text-base font-semibold mb-1">Preview &amp; Export</h2>
+            <p class="text-xs text-slate-500 mb-4">
+              Read-only configuration JSON preview and export controls. In the real implementation, the blue button will generate static page config.
+            </p>
+
+            <div class="space-y-3">
+              <div class="space-y-1.5">
+                <label class="block text-sm font-medium text-slate-700">
+                  Configuration JSON (Read-only)
+                </label>
+                <textarea
+                  disabled
+                  rows="7"
+                  class="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-[11px] leading-[1.3] text-slate-600 font-mono resize-y"
+                >{
+  "basicInfo": {
+    "gameNameChinese": "",
+    "gameNameEnglish": "",
+    "slogan": "",
+    "shortDescription": "",
+    "longDescription": "",
+    "genreTags": []
+  },
+  "preregSettings": {
+    "startDate": "",
+    "endDate": "",
+    "expectedLaunchDate": "",
+    "showCountdown": false
+  },
+  "theme": {
+    "template": "adventure",
+    "primaryColor": "#3B82F6",
+    "secondaryColor": "#8B5CF6",
+    "buttonColor": "#10B981",
+    "fontFamily": "Noto Sans"
+  },
+  "assets": {
+    "heroBackground": {},
+    "mainCta": {},
+    "gameLogo": {},
+    "platformIcons": {},
+    "genericIcons": {}
+  }
+}</textarea>
+              </div>
+
+              <div class="flex flex-wrap gap-3 pt-1">
+                <button
+                  disabled
+                  class="inline-flex cursor-default items-center justify-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm"
+                >
+                  Generate Static Page Config
+                </button>
+                <button
+                  disabled
+                  class="inline-flex cursor-default items-center justify-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700"
+                >
+                  Reset All Fields
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Right: preview panel -->
+        <aside class="flex flex-col">
+          <div class="rounded-xl bg-white border border-slate-200 px-5 py-5 h-fit">
+            <div class="flex items-baseline justify-between gap-2 mb-3">
+              <div class="text-sm font-semibold text-slate-800">Preview</div>
+              <div class="text-xs text-slate-500">
+                Theme: <span class="font-medium text-indigo-600">Adventure / Ocean</span>
+                &nbsp;·&nbsp;
+                Game: <span class="font-medium text-slate-700">Untitled</span>
+              </div>
+            </div>
+
+            <div class="flex justify-center">
+              <div class="w-[270px] sm:w-[300px] rounded-[28px] border-[3px] border-slate-900 bg-slate-100 px-3 pt-3 pb-4 shadow-lg">
+                <!-- notch -->
+                <div class="mx-auto mb-3 h-1.5 w-16 rounded-full bg-slate-300"></div>
+                <!-- screen -->
+                <div class="rounded-2xl border border-slate-300 bg-white px-3.5 py-3.5 flex flex-col gap-3">
+                  <!-- hero -->
+                  <div class="h-20 rounded-xl bg-[#3B82F6] flex items-center justify-center text-xs font-medium text-white">
+                    Hero Background
+                  </div>
+                  <!-- logo -->
+                  <div class="flex justify-center">
+                    <div class="h-14 w-14 rounded-md border border-dashed border-slate-300 bg-slate-100 flex items-center justify-center text-[11px] text-slate-400">
+                      Logo
+                    </div>
+                  </div>
+                  <!-- button -->
+                  <div class="flex justify-center">
+                    <button class="rounded-full bg-[#10B981] px-4 py-1.5 text-xs font-semibold text-white">
+                      Pre-Register Now
+                    </button>
+                  </div>
+                  <!-- lines -->
+                  <div class="space-y-1.5 mt-1">
+                    <div class="h-2 rounded-full bg-slate-200 w-11/12"></div>
+                    <div class="h-2 rounded-full bg-slate-200 w-9/12"></div>
+                    <div class="h-2 rounded-full bg-slate-200 w-10/12"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p class="mt-4 text-[11px] leading-relaxed text-slate-500 text-center">
+              Static preview of the pre-registration landing page hero section.
+              In the real tool, this preview updates in real time based on the configuration form on the left.
+            </p>
+          </div>
+
+          <p class="mt-3 text-[11px] text-slate-400 text-right">
+            Static UI mock · for GitHub / management review only.
+          </p>
+        </aside>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

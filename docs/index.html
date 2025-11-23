@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PreReg Page Studio ｜ 遊戲預約靜態頁產生器</title>
+  <meta
+    name="description"
+    content="PreReg Page Studio 是一個給營運與行銷使用的內部工具，讓沒有前端背景的使用者，也能快速產出遊戲事前登錄預約頁的靜態檔。"
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #0b1020;
+      --card-bg: #111827;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.1);
+      --accent-strong: #0ea5e9;
+      --text: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.4);
+      --radius-xl: 18px;
+      --radius-full: 999px;
+      --shadow-soft: 0 24px 60px rgba(15, 23, 42, 0.9);
+      --shadow-small: 0 14px 30px rgba(15, 23, 42, 0.7);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Noto Sans TC", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1d283a 0, #020617 52%, #020617 100%);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 1120px;
+      padding: 32px 20px 48px;
+    }
+
+    @media (min-width: 1024px) {
+      .page {
+        padding: 40px 0 72px;
+      }
+    }
+
+    .glass {
+      border-radius: 24px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.07) 0, rgba(15, 23, 42, 0.95) 40%, rgba(15, 23, 42, 1) 100%);
+      box-shadow: 0 40px 120px rgba(15, 23, 42, 0.95);
+      padding: 24px;
+    }
+
+    @media (min-width: 1024px) {
+      .glass {
+        padding: 32px 32px 36px;
+      }
+    }
+
+    .header {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    @media (min-width: 768px) {
+      .header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 32px;
+      }
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 12px;
+      background: radial-gradient(circle at 20% 20%, #f97316, #ec4899 40%, #22d3ee 100%);
+      box-shadow: 0 0 24px rgba(56, 189, 248, 0.7);
+    }
+
+    .brand-text-main {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .brand-text-sub {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: var(--radius-full);
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .tag-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.9);
+    }
+
+    .layout-main {
+      display: grid;
+      gap: 24px;
+    }
+
+    @media (min-width: 960px) {
+      .layout-main {
+        grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+        gap: 28px;
+      }
+    }
+
+    /* Hero / summary */
+    .hero {
+      border-radius: var(--radius-xl);
+      padding: 20px 18px 20px;
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.18) 0, rgba(15, 23, 42, 0.9) 38%, rgba(15, 23, 42, 1) 100%);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    @media (min-width: 768px) {
+      .hero {
+        padding: 24px 22px 24px;
+      }
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: var(--radius-full);
+      padding: 5px 10px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(56, 189, 248, 0.6);
+      color: var(--accent-strong);
+      font-size: 11px;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .hero-title-zh {
+      font-size: 24px;
+      line-height: 1.35;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      margin: 0;
+    }
+
+    .hero-title-en {
+      margin: 4px 0 10px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+    }
+
+    .hero-desc {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text-muted);
+      max-width: 38rem;
+    }
+
+    .hero-desc strong {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 14px;
+      border-radius: var(--radius-full);
+      font-size: 13px;
+      font-weight: 500;
+      border: 1px solid transparent;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease,
+        background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+      color: #0b1020;
+      box-shadow: 0 16px 40px rgba(56, 189, 248, 0.45);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 20px 50px rgba(56, 189, 248, 0.6);
+    }
+
+    .btn-ghost {
+      border-color: rgba(148, 163, 184, 0.7);
+      color: var(--text-muted);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-small);
+    }
+
+    .btn-icon {
+      font-size: 14px;
+      margin-left: 4px;
+    }
+
+    /* Sections */
+    .section {
+      margin-top: 18px;
+      padding: 14px 14px 14px;
+      border-radius: var(--radius-xl);
+      background: rgba(15, 23, 42, 0.88);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+    }
+
+    @media (min-width: 768px) {
+      .section {
+        padding: 16px 16px 18px;
+      }
+    }
+
+    .section-title {
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .section-subtitle {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .section-body {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .list {
+      margin: 8px 0 0;
+      padding-left: 18px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .list li + li {
+      margin-top: 4px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .pill {
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      color: var(--text-muted);
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    .pill--accent {
+      border-color: rgba(56, 189, 248, 0.7);
+      color: var(--accent-strong);
+      background: rgba(15, 23, 42, 0.96);
+    }
+
+    .grid-2 {
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    @media (min-width: 720px) {
+      .grid-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .mini-card {
+      border-radius: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 1), rgba(15, 23, 42, 0.96));
+      padding: 10px 10px 11px;
+    }
+
+    .mini-title {
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 4px;
+      color: var(--text);
+    }
+
+    .mini-text {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .steps {
+      margin: 8px 0 0;
+      padding-left: 18px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .steps li + li {
+      margin-top: 4px;
+    }
+
+    /* Right side: preview panel */
+    .preview-card {
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.18), rgba(15, 23, 42, 0.98));
+      padding: 16px 16px 18px;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .preview-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .preview-title {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .preview-badge {
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      color: var(--text-muted);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .device-wrapper {
+      margin-top: 6px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .device-frame {
+      width: 260px;
+      max-width: 100%;
+      border-radius: 30px;
+      padding: 8px;
+      background: radial-gradient(circle at top, #020617, #020617);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      box-shadow: 0 25px 50px rgba(15, 23, 42, 1);
+      position: relative;
+    }
+
+    .device-notch {
+      width: 60%;
+      height: 10px;
+      border-radius: 0 0 10px 10px;
+      background: #020617;
+      margin: 0 auto 8px;
+    }
+
+    .device-screen {
+      border-radius: 22px;
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.35), rgba(15, 23, 42, 0.98));
+      padding: 12px 10px 14px;
+      border: 1px solid rgba(15, 23, 42, 0.95);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .device-hero {
+      border-radius: 16px;
+      padding: 10px;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(56, 189, 248, 0.23));
+      border: 1px solid rgba(56, 189, 248, 0.65);
+    }
+
+    .device-game-name {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #e5e7eb;
+      margin-bottom: 2px;
+    }
+
+    .device-game-cname {
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .device-tagline {
+      font-size: 11px;
+      color: #d1d5db;
+      margin-bottom: 8px;
+    }
+
+    .device-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+      color: #020617;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .device-cta span {
+      margin-left: 4px;
+      font-size: 12px;
+    }
+
+    .device-footer {
+      margin-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .device-platforms {
+      display: flex;
+      gap: 4px;
+      font-size: 9px;
+      color: #e5e7eb;
+    }
+
+    .platform-pill {
+      padding: 3px 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.96);
+    }
+
+    .device-countdown {
+      font-size: 9px;
+      color: #e5e7eb;
+      padding: 3px 6px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+    }
+
+    .preview-notes {
+      margin-top: 12px;
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .preview-notes strong {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .code-block {
+      margin-top: 8px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+      font-size: 11px;
+      color: #9ca3af;
+      white-space: pre-line;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 20px;
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: right;
+    }
+
+    .footer span {
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="glass">
+      <!-- Header -->
+      <header class="header">
+        <div class="brand">
+          <div class="brand-logo"></div>
+          <div>
+            <div class="brand-text-main">PreReg Page Studio</div>
+            <div class="brand-text-sub">GAME PRE-REG STATIC PAGE BUILDER</div>
+          </div>
+        </div>
+        <div class="tag">
+          <span class="tag-dot"></span>
+          <span>Internal AI-assisted tool for game landing pages</span>
+        </div>
+      </header>
+
+      <div class="layout-main">
+        <!-- Left: explanation -->
+        <section>
+          <div class="hero">
+            <div class="hero-badge">
+              <span>遊戲事前登錄預約頁 · 靜態化方案</span>
+            </div>
+            <h1 class="hero-title-zh">讓營運，不用寫程式<br />也能生產「預約靜態頁」</h1>
+            <p class="hero-title-en">PRE-REGISTRATION STATIC LANDING PAGE GENERATOR</p>
+            <p class="hero-desc">
+              <strong>PreReg Page Studio</strong> 是一個給營運 / 行銷使用的
+              <strong>內部設定介面</strong>。透過表單填寫遊戲資訊、上傳符合 RWD 標準的圖片（桌機 / 平板 / 手機），系統可以輸出統一格式的設定檔與靜態頁面資源，減少前端工程師重複切版工時，提升新遊戲預約頁上線速度與一致性。
+            </p>
+            <div class="hero-actions">
+              <!-- TODO: 調整為實際 Demo 連結 -->
+              <a
+                href="./ui-preview.html"
+                class="btn-primary"
+                title="連到目前版本的配置介面"
+              >
+                查看 Demo 介面
+                <span class="btn-icon">↗</span>
+              </a>
+              <!-- TODO: 調整為實際 GitHub Repo 連結 -->
+              <a
+                href="#"
+                class="btn-ghost"
+                title="前往 GitHub 專案"
+              >
+                GitHub 專案說明
+              </a>
+            </div>
+          </div>
+
+          <!-- Section: What & Why -->
+          <div class="section">
+            <div class="section-title">OVERVIEW ｜ 專案說明</div>
+            <div class="section-subtitle">這個工具在做什麼？</div>
+            <div class="section-body">
+              簡單來說，這是一個
+              <strong>「預約頁產生器的設定後台」</strong>：<br />
+              - 左側：營運人員填寫遊戲資訊、選擇風格、上傳圖檔。<br />
+              - 右側：即時預覽預約頁在手機上的呈現。<br />
+              - 最後：產生一份結構化設定（JSON / 靜態檔），交給前端或自動流程去輸出正式預約頁。
+            </div>
+            <ul class="list">
+              <li>支援多遊戲、多專案的預約頁產出。</li>
+              <li>依照公司既有風格，目前規劃兩種 Template：
+                <strong>冒險 / 航海</strong> 與 <strong>宮廷 / 古風</strong>。</li>
+              <li>每個圖片欄位皆導向 RWD 概念：桌機 / 平板 / 手機 個別上傳，避免僅用單一圖檔硬縮放。</li>
+            </ul>
+          </div>
+
+          <!-- Section: Key Features -->
+          <div class="section">
+            <div class="section-title">FEATURES ｜ 主要功能</div>
+            <div class="grid-2">
+              <div class="mini-card">
+                <div class="mini-title">1. 遊戲資訊設定</div>
+                <div class="mini-text">
+                  - 遊戲中 / 英文名稱<br />
+                  - Slogan、一句話介紹<br />
+                  - 詳細介紹（支援多行）<br />
+                  - 類型 / 標籤（方便未來分類或 SEO）
+                </div>
+              </div>
+              <div class="mini-card">
+                <div class="mini-title">2. 預約檔期設定</div>
+                <div class="mini-text">
+                  - 預約開始 / 結束時間<br />
+                  - 預計上線日<br />
+                  - 是否顯示倒數計時<br />
+                  - 後續可延伸至後台自動關閉預約表單
+                </div>
+              </div>
+              <div class="mini-card">
+                <div class="mini-title">3. RWD 圖片與 Icon 上傳</div>
+                <div class="mini-text">
+                  - 主視覺背景（桌機 / 平板 / 手機）<br />
+                  - 預約按鈕圖片（多尺寸）<br />
+                  - 遊戲 Logo、平台 icon（iOS / Android）、其他活動 icon<br />
+                  - 以「群組」方式呈現，方便營運理解與管理。
+                </div>
+              </div>
+              <div class="mini-card">
+                <div class="mini-title">4. 主題與風格切換</div>
+                <div class="mini-text">
+                  - Template A：冒險 / 海洋風（類似 Shiny Voyage）<br />
+                  - Template B：宮廷 / 古風（沿用既有宮廷遊戲視覺）<br />
+                  - 自訂主色 / 副色 / 按鈕色、字型選擇。
+                </div>
+              </div>
+            </div>
+            <div class="pill-row">
+              <span class="pill pill--accent">No-code 預約頁設定介面</span>
+              <span class="pill">支援多遊戲 / 多專案</span>
+              <span class="pill">符合 RWD 的圖片規格</span>
+              <span class="pill">產出靜態檔與設定檔</span>
+            </div>
+          </div>
+
+          <!-- Section: Value -->
+          <div class="section">
+            <div class="section-title">VALUE ｜ 對團隊的幫助</div>
+            <div class="section-subtitle">為什麼值得做？</div>
+            <div class="section-body">
+              從營運與技術兩個角度，可以這樣看這個工具：
+            </div>
+            <ul class="list">
+              <li><strong>營運 / 行銷：</strong> 不需要會 HTML / CSS，也能主導預約頁內容與更新。</li>
+              <li><strong>前端工程：</strong> 不用一再重複切相似的 Landing Page，專心維護少數 Template 即可。</li>
+              <li><strong>管理面：</strong> 新遊戲預約頁上線節奏更穩定，可預測、可複用、好交接。</li>
+              <li><strong>長期：</strong> 未來可接 AI 產圖 / 產文流程，變成「AI + 設定」一鍵產出預約頁的完整解決方案。</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Right: preview / tech -->
+        <aside>
+          <section class="preview-card">
+            <div class="preview-header">
+              <div class="preview-title">目前 UI 雛型預覽</div>
+              <div class="preview-badge">Config UI · Prototype</div>
+            </div>
+            <div class="device-wrapper">
+              <div class="device-frame">
+                <div class="device-notch"></div>
+                <div class="device-screen">
+                  <div class="device-hero">
+                    <div class="device-game-name">ADVENTURE / OCEAN THEME</div>
+                    <div class="device-game-cname">《Shiny Voyage》預約頁 Demo</div>
+                    <div class="device-tagline">立即預約，啟航你的奇幻航海旅程。</div>
+                    <button class="device-cta">
+                      立即預約
+                      <span>▶</span>
+                    </button>
+                    <div class="device-footer">
+                      <div class="device-platforms">
+                        <span class="platform-pill">iOS</span>
+                        <span class="platform-pill">Android</span>
+                      </div>
+                      <div class="device-countdown">
+                        D-35 ｜ 預計上線：202X/XX/XX
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p class="preview-notes">
+              <strong>右側示意圖</strong>：實際專案中，這塊會即時反映左側表單內容（遊戲名稱、主題色、按鈕文案等），讓營運在設定時能立刻看到最終預約頁在手機上的呈現效果。
+            </p>
+
+            <div class="code-block">
+Tech stack:
+- React + TypeScript
+- Tailwind CSS
+- SPA configuration UI
+- 可輸出 JSON 設定檔與靜態頁資源
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-title">FLOW ｜ 使用流程（營運視角）</div>
+            <ol class="steps">
+              <li>選擇遊戲專案，填寫基本資訊（名稱、介紹、標籤）。</li>
+              <li>設定預約檔期與是否顯示倒數計時。</li>
+              <li>依照系統提示，上傳桌機 / 平板 / 手機主視覺與按鈕圖。</li>
+              <li>選擇主題（冒險 / 宮廷）與顏色，確認右側預覽畫面。</li>
+              <li>按下「產生設定檔」，交由前端 / 自動流程輸出正式預約靜態頁。</li>
+            </ol>
+          </section>
+
+          <section class="section">
+            <div class="section-title">STATUS ｜ 目前進度</div>
+            <div class="section-body">
+              - 第一版 <strong>設定 UI</strong> 已完成初步版型與欄位配置。<br />
+              - 支援多組圖片上傳欄位（以 RWD 標準拆分）。<br />
+              - 下一步可串接：
+            </div>
+            <ul class="list">
+              <li>輸出 JSON 設定檔與靜態檔 zip。</li>
+              <li>與既有 Template Repo / 自動部署流程整合。</li>
+              <li>導入 AI 協助產生文案、圖片建議尺寸與檔名規範。</li>
+            </ul>
+          </section>
+        </aside>
+      </div>
+
+      <footer class="footer">
+        <span>PreReg Page Studio ｜ Internal prototype for game pre-registration static pages.</span>
+      </footer>
+    </div>
+  </main>
+</body>
+</html>
