@@ -1,4 +1,4 @@
-import type { StaticPageConfig, ImageValue, ImageVariant, AssetsConfig } from '../types/config';
+import type { StaticPageConfig, ImageValue, ImageVariant } from '../types/config';
 
 const DATA_URL_REGEX = /^data:(.+);base64,(.*)$/;
 
@@ -76,10 +76,10 @@ function generateAssetPath(
  * Processes a single ImageValue, converting data URLs to asset files
  */
 function processImageValue(
-  value: ImageValue,
+  value: ImageValue | undefined,
   assetType: string,
-  variant?: string,
-  files: AssetFile[]
+  files: AssetFile[],
+  variant?: string
 ): string | null {
   // Keep null values as-is
   if (!value) return null;
@@ -125,13 +125,13 @@ function processImageVariant(
   const result: ImageVariant = {};
 
   if (variant.desktop !== undefined) {
-    result.desktop = processImageValue(variant.desktop, assetType, 'desktop', files);
+    result.desktop = processImageValue(variant.desktop, assetType, files, 'desktop');
   }
   if (variant.tablet !== undefined) {
-    result.tablet = processImageValue(variant.tablet, assetType, 'tablet', files);
+    result.tablet = processImageValue(variant.tablet, assetType, files, 'tablet');
   }
   if (variant.mobile !== undefined) {
-    result.mobile = processImageValue(variant.mobile, assetType, 'mobile', files);
+    result.mobile = processImageValue(variant.mobile, assetType, files, 'mobile');
   }
 
   // Return undefined if all variants are null/undefined
@@ -164,15 +164,14 @@ export function processAssets(config: StaticPageConfig): ProcessedAssets {
   );
 
   // Process gameLogo
-  const gameLogo = processImageValue(assets.gameLogo, 'game-logo', undefined, files);
+  const gameLogo = processImageValue(assets.gameLogo, 'game-logo', files);
 
   // Process platformIcons
   const platformIcons = {
-    ios: processImageValue(assets.platformIcons.ios, 'platform-ios', undefined, files),
+    ios: processImageValue(assets.platformIcons.ios, 'platform-ios', files),
     android: processImageValue(
       assets.platformIcons.android,
       'platform-android',
-      undefined,
       files
     ),
   };
