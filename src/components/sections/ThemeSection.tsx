@@ -8,7 +8,7 @@ interface ThemeSectionProps {
   onChange: (data: ThemeConfig) => void;
 }
 
-const FONT_OPTIONS = ['Noto Sans', 'Source Han Sans', 'System default'];
+const FONT_OPTIONS = ['Noto Sans', 'Source Han Sans', '系統預設'];
 
 export const ThemeSection: React.FC<ThemeSectionProps> = ({ data, onChange }) => {
   const updateField = <K extends keyof ThemeConfig>(field: K, value: ThemeConfig[K]) => {
@@ -17,11 +17,11 @@ export const ThemeSection: React.FC<ThemeSectionProps> = ({ data, onChange }) =>
 
   return (
     <FormCard>
-      <SectionTitle title="Theme & Style" />
+      <SectionTitle title="主題與樣式" />
       <div className="space-y-4">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Theme
+            主題
           </label>
           <div className="space-y-2">
             <label className="flex items-center">
@@ -34,7 +34,7 @@ export const ThemeSection: React.FC<ThemeSectionProps> = ({ data, onChange }) =>
                 className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
               />
               <span className="ml-2 text-sm text-gray-700">
-                Adventure / Ocean (Template A)
+                冒險 / 海洋（模板 A）
               </span>
             </label>
             <label className="flex items-center">
@@ -47,7 +47,7 @@ export const ThemeSection: React.FC<ThemeSectionProps> = ({ data, onChange }) =>
                 className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
               />
               <span className="ml-2 text-sm text-gray-700">
-                Palace / Ancient (Template B)
+                宮殿 / 古代（模板 B）
               </span>
             </label>
           </div>
@@ -55,7 +55,7 @@ export const ThemeSection: React.FC<ThemeSectionProps> = ({ data, onChange }) =>
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            Primary Color
+            主色
           </label>
           <div className="flex items-center gap-3">
             <input
@@ -76,7 +76,7 @@ export const ThemeSection: React.FC<ThemeSectionProps> = ({ data, onChange }) =>
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            Secondary Color
+            輔助色
           </label>
           <div className="flex items-center gap-3">
             <input
@@ -97,7 +97,7 @@ export const ThemeSection: React.FC<ThemeSectionProps> = ({ data, onChange }) =>
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            Button Color
+            按鈕顏色
           </label>
           <div className="flex items-center gap-3">
             <input
@@ -118,7 +118,7 @@ export const ThemeSection: React.FC<ThemeSectionProps> = ({ data, onChange }) =>
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            Font Family
+            字體
           </label>
           <select
             value={data.fontFamily}

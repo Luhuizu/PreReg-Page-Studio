@@ -48,11 +48,11 @@ function App() {
 
   const handleGenerate = () => {
     console.log('Generated Config:', config);
-    alert('Configuration logged to console! Check the browser console for details.');
+    alert('設定檔已記錄到控制台！請查看瀏覽器控制台以獲取詳細資訊。');
   };
 
   const handleReset = () => {
-    if (confirm('Are you sure you want to reset all fields?')) {
+    if (confirm('您確定要重置所有欄位嗎？')) {
       setConfig(initialConfig);
     }
   };

@@ -21,11 +21,11 @@ export const PreRegSettingsSection: React.FC<PreRegSettingsSectionProps> = ({
 
   return (
     <FormCard>
-      <SectionTitle title="Pre-registration Settings" />
+      <SectionTitle title="預約活動設定" />
       <div className="space-y-4">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            Pre-reg Start Date
+            預約開始日期
           </label>
           <input
             type="date"
@@ -37,7 +37,7 @@ export const PreRegSettingsSection: React.FC<PreRegSettingsSectionProps> = ({
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            Pre-reg End Date
+            預約結束日期
           </label>
           <input
             type="date"
@@ -49,7 +49,7 @@ export const PreRegSettingsSection: React.FC<PreRegSettingsSectionProps> = ({
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            Expected Launch Date
+            預計上線日期
           </label>
           <input
             type="date"
@@ -68,7 +68,7 @@ export const PreRegSettingsSection: React.FC<PreRegSettingsSectionProps> = ({
             className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
           />
           <label htmlFor="showCountdown" className="ml-2 text-sm text-gray-700">
-            Show countdown timer on the page
+            在頁面上顯示倒數計時器
           </label>
         </div>
       </div>

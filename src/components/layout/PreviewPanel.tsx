@@ -7,19 +7,19 @@ interface PreviewPanelProps {
 
 export const PreviewPanel: React.FC<PreviewPanelProps> = ({ config }) => {
   const themeName =
-    config.theme.template === 'adventure'
-      ? 'Adventure / Ocean'
-      : 'Palace / Ancient';
+    config.theme.template === 'adventure-default'
+      ? '冒險 / 海洋'
+      : '宮殿 / 古代';
 
   return (
     <div className="bg-white rounded-lg border border-gray-200 p-6 h-full">
       <div className="mb-4">
         <p className="text-sm text-gray-600">
-          <span className="font-medium">Theme:</span> {themeName}
+          <span className="font-medium">主題：</span> {themeName}
         </p>
         <p className="text-sm text-gray-600 mt-1">
-          <span className="font-medium">Game:</span>{' '}
-          {config.basicInfo.gameNameEnglish || config.basicInfo.gameNameChinese || 'Untitled'}
+          <span className="font-medium">遊戲：</span>{' '}
+          {config.basicInfo.gameNameEnglish || config.basicInfo.gameNameChinese || '未命名'}
         </p>
       </div>
 
@@ -37,14 +37,14 @@ export const PreviewPanel: React.FC<PreviewPanelProps> = ({ config }) => {
                 style={{ backgroundColor: config.theme.primaryColor }}
               >
                 <div className="text-white text-sm font-medium">
-                  Hero Background
+                  主視覺背景圖
                 </div>
               </div>
 
               {/* Game logo placeholder */}
               <div className="flex justify-center mb-4">
                 <div className="w-20 h-20 bg-gray-200 rounded-lg flex items-center justify-center">
-                  <span className="text-gray-400 text-xs">Logo</span>
+                  <span className="text-gray-400 text-xs">標誌</span>
                 </div>
               </div>
 
@@ -63,7 +63,7 @@ export const PreviewPanel: React.FC<PreviewPanelProps> = ({ config }) => {
                   className="px-6 py-3 rounded-lg text-white font-medium text-sm"
                   style={{ backgroundColor: config.theme.buttonColor }}
                 >
-                  Pre-Register Now
+                  立即預約
                 </button>
               </div>
 

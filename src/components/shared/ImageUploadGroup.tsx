@@ -58,7 +58,7 @@ export const ImageUploadGroup: React.FC<ImageUploadGroupProps> = ({
       <label className="block text-sm font-medium text-gray-700 mb-1">
         {fieldLabel}
       </label>
-      <p className="text-xs text-gray-500 mb-2">Recommended: {recommendedSize}</p>
+      <p className="text-xs text-gray-500 mb-2">建議尺寸：{recommendedSize}</p>
       <div className="flex items-center gap-3">
         <input
           type="file"
@@ -72,7 +72,7 @@ export const ImageUploadGroup: React.FC<ImageUploadGroupProps> = ({
           onClick={() => inputRef.current?.click()}
           className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md text-sm font-medium transition-colors"
         >
-          Upload
+          上傳
         </button>
         {file && (
           <span className="text-sm text-gray-600 truncate flex-1">
@@ -85,7 +85,7 @@ export const ImageUploadGroup: React.FC<ImageUploadGroupProps> = ({
             onClick={() => onChange(null)}
             className="text-red-500 hover:text-red-700 text-sm"
           >
-            Remove
+            移除
           </button>
         )}
       </div>
@@ -103,21 +103,21 @@ export const ImageUploadGroup: React.FC<ImageUploadGroupProps> = ({
       )}
       <div className="space-y-4 pl-4 border-l-2 border-gray-200">
         <ImageUploadField
-          label="Desktop image"
+          label="桌面版圖片"
           file={desktopFile}
           onChange={onDesktopChange}
           inputRef={desktopInputRef}
           recommendedSize={desktopSize}
         />
         <ImageUploadField
-          label="Tablet image"
+          label="平板版圖片"
           file={tabletFile}
           onChange={onTabletChange}
           inputRef={tabletInputRef}
           recommendedSize={tabletSize}
         />
         <ImageUploadField
-          label="Mobile image"
+          label="手機版圖片"
           file={mobileFile}
           onChange={onMobileChange}
           inputRef={mobileInputRef}

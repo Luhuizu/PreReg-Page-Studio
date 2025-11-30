@@ -70,10 +70,10 @@ export const AssetsSection: React.FC<AssetsSectionProps> = ({ data, onChange }) 
 
   return (
     <FormCard>
-      <SectionTitle title="Images & Assets" />
+      <SectionTitle title="圖片與素材" />
       <div className="space-y-6">
         <ImageUploadGroup
-          label="Hero Background"
+          label="主視覺背景圖"
           required
           desktopFile={asFile(data.heroBackground.desktop)}
           tabletFile={asFile(data.heroBackground.tablet)}
@@ -84,7 +84,7 @@ export const AssetsSection: React.FC<AssetsSectionProps> = ({ data, onChange }) 
         />
 
         <ImageUploadGroup
-          label="Main Call-to-Action Button Image"
+          label="主要行動呼籲按鈕圖片"
           required
           desktopFile={asFile(data.mainCtaButton.desktop)}
           tabletFile={asFile(data.mainCtaButton.tablet)}
@@ -96,9 +96,9 @@ export const AssetsSection: React.FC<AssetsSectionProps> = ({ data, onChange }) 
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            Game Logo
+            遊戲標誌
           </label>
-          <p className="text-xs text-gray-500 mb-2">Recommended: 512x512</p>
+          <p className="text-xs text-gray-500 mb-2">建議尺寸：512x512</p>
           <div className="flex items-center gap-3">
             <input
               type="file"
@@ -112,7 +112,7 @@ export const AssetsSection: React.FC<AssetsSectionProps> = ({ data, onChange }) 
               onClick={() => logoInputRef.current?.click()}
               className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md text-sm font-medium transition-colors"
             >
-              Upload
+              上傳
             </button>
             {assetLabel(data.gameLogo) && (
               <span className="text-sm text-gray-600 truncate flex-1">
@@ -125,7 +125,7 @@ export const AssetsSection: React.FC<AssetsSectionProps> = ({ data, onChange }) 
                 onClick={() => onChange({ ...data, gameLogo: null })}
                 className="text-red-500 hover:text-red-700 text-sm"
               >
-                Remove
+                移除
               </button>
             )}
           </div>
@@ -133,14 +133,14 @@ export const AssetsSection: React.FC<AssetsSectionProps> = ({ data, onChange }) 
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-3">
-            Platform Icons
+            平台圖示
           </label>
           <div className="space-y-3 pl-4 border-l-2 border-gray-200">
             <div>
               <label className="block text-sm font-medium text-gray-600 mb-1">
-                iOS Icon
+                iOS 圖示
               </label>
-              <p className="text-xs text-gray-500 mb-2">Recommended: 1024x1024</p>
+              <p className="text-xs text-gray-500 mb-2">建議尺寸：1024x1024</p>
               <div className="flex items-center gap-3">
                 <input
                   type="file"
@@ -154,7 +154,7 @@ export const AssetsSection: React.FC<AssetsSectionProps> = ({ data, onChange }) 
                   onClick={() => iosInputRef.current?.click()}
                   className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md text-sm font-medium transition-colors"
                 >
-                  Upload
+                  上傳
                 </button>
                 {assetLabel(data.platformIcons.ios) && (
                   <span className="text-sm text-gray-600 truncate flex-1">
@@ -172,7 +172,7 @@ export const AssetsSection: React.FC<AssetsSectionProps> = ({ data, onChange }) 
                     }
                     className="text-red-500 hover:text-red-700 text-sm"
                   >
-                    Remove
+                    移除
                   </button>
                 )}
               </div>
@@ -180,9 +180,9 @@ export const AssetsSection: React.FC<AssetsSectionProps> = ({ data, onChange }) 
 
             <div>
               <label className="block text-sm font-medium text-gray-600 mb-1">
-                Android Icon
+                Android 圖示
               </label>
-              <p className="text-xs text-gray-500 mb-2">Recommended: 1024x1024</p>
+              <p className="text-xs text-gray-500 mb-2">建議尺寸：1024x1024</p>
               <div className="flex items-center gap-3">
                 <input
                   type="file"
@@ -196,7 +196,7 @@ export const AssetsSection: React.FC<AssetsSectionProps> = ({ data, onChange }) 
                   onClick={() => androidInputRef.current?.click()}
                   className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md text-sm font-medium transition-colors"
                 >
-                  Upload
+                  上傳
                 </button>
                 {assetLabel(data.platformIcons.android) && (
                   <span className="text-sm text-gray-600 truncate flex-1">
@@ -214,7 +214,7 @@ export const AssetsSection: React.FC<AssetsSectionProps> = ({ data, onChange }) 
                     }
                     className="text-red-500 hover:text-red-700 text-sm"
                   >
-                    Remove
+                    移除
                   </button>
                 )}
               </div>
@@ -223,8 +223,8 @@ export const AssetsSection: React.FC<AssetsSectionProps> = ({ data, onChange }) 
         </div>
 
         <ImageUploadGroup
-          label="Other Generic Icons"
-          description="For rewards, steps, etc."
+          label="其他通用圖示"
+          description="用於獎勵、步驟等"
           desktopFile={asFile(data.genericIcons?.desktop)}
           tabletFile={asFile(data.genericIcons?.tablet)}
           mobileFile={asFile(data.genericIcons?.mobile)}
