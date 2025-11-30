@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <title>Game Pre-registration – Template B (Palace / Ancient)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700&family=Noto+Sans+TC:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-color: #d4af37;
+        --secondary-color: #8b1a1a;
+        --button-color: #eab308;
+      }
+      body {
+        font-family: "Noto Sans TC", system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+      }
+      .serif-title {
+        font-family: "Noto Serif TC", "Noto Sans TC", system-ui, serif;
+        letter-spacing: 0.05em;
+      }
+      /* Palace-style scroll effect */
+      @keyframes shimmer {
+        0%, 100% { opacity: 0.6; }
+        50% { opacity: 1; }
+      }
+      .palace-glow {
+        box-shadow: 0 0 20px rgba(212, 175, 55, 0.3),
+                    0 0 40px rgba(212, 175, 55, 0.15),
+                    inset 0 0 20px rgba(212, 175, 55, 0.1);
+      }
+      .palace-border {
+        border: 1px solid rgba(212, 175, 55, 0.4);
+        box-shadow: inset 0 0 10px rgba(212, 175, 55, 0.2);
+      }
+      .vignette {
+        box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.8),
+                    inset 0 0 200px rgba(0, 0, 0, 0.4);
+      }
+    </style>
+  </head>
+  <body class="bg-[#0a0505] text-amber-50">
+    <!-- Hero Section - Full-width Palace Banner -->
+    <header class="relative overflow-hidden min-h-[85vh] sm:min-h-[90vh] flex items-center">
+      <!-- Responsive Hero Background Images -->
+      <div
+        id="hero-bg-desktop"
+        class="hidden lg:block absolute inset-0 bg-[radial-gradient(circle_at_top,#3f1a1a_0,#0a0505_55%)] bg-center bg-cover bg-no-repeat"
+      ></div>
+      <div
+        id="hero-bg-tablet"
+        class="hidden md:block lg:hidden absolute inset-0 bg-[radial-gradient(circle_at_top,#3f1a1a_0,#0a0505_55%)] bg-center bg-cover bg-no-repeat"
+      ></div>
+      <div
+        id="hero-bg-mobile"
+        class="block md:hidden absolute inset-0 bg-[radial-gradient(circle_at_top,#3f1a1a_0,#0a0505_55%)] bg-center bg-cover bg-no-repeat"
+      ></div>
+
+      <!-- Soft Golden Gradient Overlay -->
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-[rgba(212,175,55,0.25)] via-[rgba(139,26,26,0.4)] to-[rgba(0,0,0,0.85)]"
+      ></div>
+
+      <!-- Vignette Effect -->
+      <div class="absolute inset-0 vignette pointer-events-none"></div>
+
+      <!-- Palace-style Frame Border (Subtle Gold Edge Glow) -->
+      <div
+        class="absolute inset-0 pointer-events-none"
+        style="box-shadow: inset 0 0 80px rgba(212, 175, 55, 0.15), inset 0 0 40px rgba(212, 175, 55, 0.1);"
+      ></div>
+
+      <!-- Ornamental Top Border -->
+      <div
+        class="pointer-events-none absolute inset-x-0 top-0 h-20 bg-[linear-gradient(to_bottom,rgba(212,175,55,0.2),transparent)]"
+      ></div>
+
+      <!-- Hero Content -->
+      <div
+        class="relative z-10 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 w-full"
+      >
+        <div class="flex flex-col items-center text-center space-y-6 sm:space-y-8">
+          <!-- Genre Tags - Above Title -->
+          <div id="genre-tags-container" class="flex flex-wrap justify-center gap-2 hidden">
+            <!-- Genre chips will be inserted here -->
+          </div>
+
+          <!-- Game Title -->
+          <div class="space-y-3 sm:space-y-4">
+            <h1
+              id="game-title"
+              class="serif-title text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-wide leading-tight drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)]"
+              style="text-shadow: 0 0 20px rgba(212, 175, 55, 0.5), 0 2px 10px rgba(0, 0, 0, 0.8);"
+            >
+              <span id="game-title-chinese" class="block"></span>
+              <span id="game-title-english" class="block text-2xl sm:text-3xl lg:text-4xl xl:text-5xl opacity-90 mt-2"></span>
+            </h1>
+
+            <!-- Slogan -->
+            <p
+              id="slogan"
+              class="text-base sm:text-lg lg:text-xl text-amber-100/95 font-medium max-w-3xl mx-auto drop-shadow-lg"
+            ></p>
+          </div>
+
+          <!-- Short Description -->
+          <p
+            id="short-description"
+            class="text-sm sm:text-base lg:text-lg text-amber-100/85 max-w-2xl mx-auto leading-relaxed"
+          ></p>
+
+          <!-- CTA Button - Palace Style -->
+          <div class="flex flex-col items-center gap-4 sm:gap-6 pt-4">
+            <button
+              id="cta-button"
+              class="px-10 sm:px-12 py-4 sm:py-5 rounded-full text-base sm:text-lg lg:text-xl font-bold shadow-[0_0_25px_rgba(234,179,8,0.6),0_0_50px_rgba(234,179,8,0.3)] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_35px_rgba(234,179,8,0.8),0_0_70px_rgba(234,179,8,0.4)] focus:outline-none focus:ring-4 focus:ring-offset-4 focus:ring-offset-[#0a0505]"
+              style="background: linear-gradient(135deg, #fbbf24 0%, #facc15 50%, #eab308 100%); color: #1a0a00; border: 2px solid rgba(234, 179, 8, 0.6);"
+            >
+              <span id="cta-text-chinese">立即預約</span>
+              <span id="cta-text-english" class="block text-xs sm:text-sm mt-1 opacity-80">Pre-register Now</span>
+            </button>
+
+            <!-- Platform Icons -->
+            <div id="platform-icons-container" class="flex items-center gap-3 sm:gap-4 hidden">
+              <span class="text-xs sm:text-sm text-amber-100/80">可預約平台：</span>
+              <div class="flex items-center gap-2 sm:gap-3">
+                <a
+                  id="ios-link"
+                  href="#"
+                  class="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#0a0505] rounded-lg"
+                >
+                  <img
+                    id="ios-icon"
+                    src=""
+                    alt="iOS"
+                    class="h-8 sm:h-10 w-auto rounded-lg shadow-lg ring-2 ring-amber-200/40 bg-black/40 p-1"
+                  />
+                </a>
+                <a
+                  id="android-link"
+                  href="#"
+                  class="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#0a0505] rounded-lg"
+                >
+                  <img
+                    id="android-icon"
+                    src=""
+                    alt="Android"
+                    class="h-8 sm:h-10 w-auto rounded-lg shadow-lg ring-2 ring-amber-200/40 bg-black/40 p-1"
+                  />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Decorative Bottom Divider - Golden Gradient -->
+      <div
+        class="relative z-10 h-16 sm:h-20 bg-[radial-gradient(circle_at_top,rgba(212,175,55,0.4)_0,transparent_60%)] opacity-50"
+      ></div>
+    </header>
+
+    <!-- Story / Description Section - Ornate Card -->
+    <main class="bg-[#0a0505]">
+      <section id="story-section" class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+        <div
+          class="palace-border rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 shadow-xl"
+          style="background: linear-gradient(135deg, #2b1a1a 0%, #1a0f0f 50%, #0f0808 100%);"
+        >
+          <h2
+            class="serif-title text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 text-center sm:text-left"
+            style="color: #d4af37; text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);"
+          >
+            劇情簡介 / Story
+          </h2>
+          <div
+            id="long-description"
+            class="text-sm sm:text-base lg:text-lg leading-relaxed text-amber-100/90 whitespace-pre-line space-y-4"
+          ></div>
+        </div>
+      </section>
+
+      <!-- Rewards Section - Palace Style Reward Boxes -->
+      <section id="rewards-section" class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pb-12 sm:pb-16 lg:pb-20">
+        <div
+          class="palace-border rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 shadow-xl"
+          style="background: linear-gradient(135deg, #2b1a1a 0%, #1a0f0f 50%, #0f0808 100%);"
+        >
+          <h3
+            class="serif-title text-xl sm:text-2xl lg:text-3xl font-bold mb-6 sm:mb-8 text-center"
+            style="color: #d4af37; text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);"
+          >
+            預約福利 / Campaign Rewards
+          </h3>
+          <div id="rewards-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            <!-- Reward cards will be populated here -->
+            <!-- Placeholder cards shown by default, hidden when real rewards are loaded -->
+            <div class="reward-card-placeholder bg-gradient-to-br from-amber-900/30 to-amber-950/50 rounded-xl p-5 sm:p-6 border border-amber-500/30 palace-glow">
+              <div class="text-3xl sm:text-4xl mb-3 text-center">🎁</div>
+              <div class="text-sm sm:text-base font-semibold text-amber-200 mb-2 text-center">登入獎勵</div>
+              <div class="text-xs sm:text-sm text-amber-100/70 text-center">預約即可獲得基礎獎勵</div>
+            </div>
+            <div class="reward-card-placeholder bg-gradient-to-br from-amber-900/30 to-amber-950/50 rounded-xl p-5 sm:p-6 border border-amber-500/30 palace-glow">
+              <div class="text-3xl sm:text-4xl mb-3 text-center">⭐</div>
+              <div class="text-sm sm:text-base font-semibold text-amber-200 mb-2 text-center">階段獎勵</div>
+              <div class="text-xs sm:text-sm text-amber-100/70 text-center">達成指定預約人數解鎖</div>
+            </div>
+            <div class="reward-card-placeholder bg-gradient-to-br from-amber-900/30 to-amber-950/50 rounded-xl p-5 sm:p-6 border border-amber-500/30 palace-glow sm:col-span-2 lg:col-span-1">
+              <div class="text-3xl sm:text-4xl mb-3 text-center">🏆</div>
+              <div class="text-sm sm:text-base font-semibold text-amber-200 mb-2 text-center">專屬獎勵</div>
+              <div class="text-xs sm:text-sm text-amber-100/70 text-center">預約玩家專屬內容</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer - Subtle with Golden Divider -->
+    <footer class="border-t border-amber-900/50 bg-black/80">
+      <div
+        class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4"
+      >
+        <div class="flex flex-col gap-1">
+          <span class="text-xs sm:text-sm text-amber-300/60"
+            >© 2025 Your Company. All rights reserved.</span
+          >
+          <span id="generated-at" class="text-xs text-amber-300/50 hidden"></span>
+        </div>
+        <span class="text-xs sm:text-sm text-amber-300/60"
+          >PreReg Page Studio · Template B / Palace · Ancient</span
+        >
+      </div>
+    </footer>
+
+    <!-- Config JSON Injection Point -->
+    <script id="prereg-config" type="application/json">
+{{CONFIG_JSON}}
+    </script>
+
+    <!-- Runtime JavaScript -->
+    <script>
+      (function () {
+        const script = document.getElementById("prereg-config");
+        if (!script) return;
+        let cfg;
+        try {
+          cfg = JSON.parse(script.textContent);
+        } catch (e) {
+          console.error("Invalid config JSON", e);
+          return;
+        }
+
+        const data = cfg.data || cfg;
+        const basic = data.basicInfo || {};
+        const prereg = data.preregSettings || {};
+        const theme = data.theme || {};
+        const assets = data.assets || {};
+
+        const $ = (id) => document.getElementById(id);
+        const setText = (id, value) => {
+          const el = $(id);
+          if (el && value) el.textContent = value;
+        };
+        const setHTML = (id, value) => {
+          const el = $(id);
+          if (el && value) el.innerHTML = value;
+        };
+        const show = (id) => {
+          const el = $(id);
+          if (el) el.classList.remove("hidden");
+        };
+        const hide = (id) => {
+          const el = $(id);
+          if (el) el.classList.add("hidden");
+        };
+
+        // Apply theme colors
+        const primary = theme.primaryColor || "#d4af37";
+        const secondary = theme.secondaryColor || "#8b1a1a";
+        const button = theme.buttonColor || "#eab308";
+        const root = document.documentElement;
+        root.style.setProperty("--primary-color", primary);
+        root.style.setProperty("--secondary-color", secondary);
+        root.style.setProperty("--button-color", button);
+
+        // Apply font family
+        if (theme.fontFamily) {
+          const fontStack = theme.fontFamily + ", " + document.body.style.fontFamily;
+          document.body.style.fontFamily = fontStack;
+        }
+
+        // Game Title
+        const titleChinese = basic.gameNameChinese || "";
+        const titleEnglish = basic.gameNameEnglish || "";
+        if (titleChinese) {
+          setText("game-title-chinese", titleChinese);
+        } else {
+          const el = $("game-title-chinese");
+          if (el) el.style.display = "none";
+        }
+        if (titleEnglish) {
+          setText("game-title-english", titleEnglish);
+        } else {
+          const el = $("game-title-english");
+          if (el) el.style.display = "none";
+        }
+        if (!titleChinese && !titleEnglish) {
+          setText("game-title-chinese", "宮廷遊戲預約活動");
+        }
+
+        // Slogan
+        setText("slogan", basic.slogan || "");
+        if (!basic.slogan) {
+          const el = $("slogan");
+          if (el) el.style.display = "none";
+        }
+
+        // Short Description
+        setText("short-description", basic.shortDescription || "");
+        if (!basic.shortDescription) {
+          const el = $("short-description");
+          if (el) el.style.display = "none";
+        }
+
+        // Long Description / Story
+        const longDesc = basic.longDescription || "";
+        if (longDesc) {
+          // Basic URL detection and linkification
+          const urlRegex = /(https?:\/\/[^\s]+)/g;
+          const linkedDesc = longDesc.replace(
+            urlRegex,
+            '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-amber-300 hover:text-amber-200 underline" style="color: #d4af37;">$1</a>'
+          );
+          setHTML("long-description", linkedDesc);
+        } else {
+          const storySection = $("story-section");
+          if (storySection) storySection.style.display = "none";
+        }
+
+        // Genre Tags
+        const genreTags = basic.genreTags || [];
+        const genreContainer = $("genre-tags-container");
+        if (genreContainer && genreTags.length > 0) {
+          genreContainer.innerHTML = "";
+          genreTags.forEach((tag) => {
+            const chip = document.createElement("span");
+            chip.className =
+              "px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium backdrop-blur-sm";
+            chip.style.cssText =
+              "background: rgba(212, 175, 55, 0.15); border: 1px solid rgba(212, 175, 55, 0.5); color: #f4d29a;";
+            chip.textContent = tag;
+            genreContainer.appendChild(chip);
+          });
+          show("genre-tags-container");
+        } else {
+          hide("genre-tags-container");
+        }
+
+        // CTA Button
+        const cta = $("cta-button");
+        if (cta && button) {
+          // Use button color from theme, or fallback to gold gradient
+          const buttonGradient = `linear-gradient(135deg, ${button} 0%, ${button}dd 50%, ${button}bb 100%)`;
+          cta.style.background = buttonGradient;
+          cta.style.color = "#1a0a00";
+          cta.style.borderColor = button + "99";
+        }
+
+        // Hero Background Images (Responsive)
+        const heroDesktop = $("hero-bg-desktop");
+        const heroTablet = $("hero-bg-tablet");
+        const heroMobile = $("hero-bg-mobile");
+
+        if (assets.heroBackground) {
+          if (assets.heroBackground.desktop && heroDesktop) {
+            heroDesktop.style.backgroundImage = `url("${assets.heroBackground.desktop}")`;
+          }
+          if (assets.heroBackground.tablet && heroTablet) {
+            heroTablet.style.backgroundImage = `url("${assets.heroBackground.tablet}")`;
+          }
+          if (assets.heroBackground.mobile && heroMobile) {
+            heroMobile.style.backgroundImage = `url("${assets.heroBackground.mobile}")`;
+          }
+        }
+
+        // Platform Icons
+        const platformContainer = $("platform-icons-container");
+        const iosIcon = $("ios-icon");
+        const androidIcon = $("android-icon");
+        let hasPlatforms = false;
+
+        if (assets.platformIcons) {
+          if (assets.platformIcons.ios && iosIcon) {
+            iosIcon.src = assets.platformIcons.ios;
+            hasPlatforms = true;
+          } else {
+            hide("ios-link");
+          }
+          if (assets.platformIcons.android && androidIcon) {
+            androidIcon.src = assets.platformIcons.android;
+            hasPlatforms = true;
+          } else {
+            hide("android-link");
+          }
+        }
+
+        if (hasPlatforms) {
+          show("platform-icons-container");
+        } else {
+          hide("platform-icons-container");
+        }
+
+        // Rewards Section with Generic Icons
+        const rewardsGrid = $("rewards-grid");
+        const rewardsSection = $("rewards-section");
+        if (rewardsGrid && assets.genericIcons) {
+          // Hide placeholder cards
+          const placeholders = rewardsGrid.querySelectorAll(".reward-card-placeholder");
+          placeholders.forEach((p) => p.remove());
+
+          // Create reward cards from genericIcons
+          const iconUrls = [
+            assets.genericIcons.desktop || assets.genericIcons.tablet || assets.genericIcons.mobile,
+            assets.genericIcons.tablet || assets.genericIcons.desktop || assets.genericIcons.mobile,
+            assets.genericIcons.mobile || assets.genericIcons.tablet || assets.genericIcons.desktop,
+          ].filter(Boolean);
+
+          if (iconUrls.length > 0) {
+            const rewardLabels = ["登入獎勵", "階段獎勵", "專屬獎勵"];
+            const rewardDescriptions = [
+              "預約即可獲得基礎獎勵",
+              "達成指定預約人數解鎖",
+              "預約玩家專屬內容",
+            ];
+
+            iconUrls.slice(0, 3).forEach((iconUrl, index) => {
+              const card = document.createElement("div");
+              card.className =
+                "bg-gradient-to-br from-amber-900/30 to-amber-950/50 rounded-xl p-5 sm:p-6 border border-amber-500/30 palace-glow";
+              card.innerHTML = `
+                <div class="mb-3 flex justify-center">
+                  <img src="${iconUrl}" alt="Reward ${index + 1}" class="h-16 w-16 sm:h-20 sm:w-20 object-contain" />
+                </div>
+                <div class="text-sm sm:text-base font-semibold text-amber-200 mb-2 text-center">${rewardLabels[index] || "獎勵"}</div>
+                <div class="text-xs sm:text-sm text-amber-100/70 text-center">${rewardDescriptions[index] || ""}</div>
+              `;
+              rewardsGrid.appendChild(card);
+            });
+          }
+        } else if (rewardsGrid) {
+          // Keep placeholder cards if no genericIcons provided
+        }
+
+        // Hide rewards section if no content
+        if (rewardsGrid && rewardsGrid.children.length === 0) {
+          if (rewardsSection) rewardsSection.style.display = "none";
+        }
+
+        // Generated At
+        if (cfg.generatedAt) {
+          const genAt = $("generated-at");
+          if (genAt) {
+            try {
+              const date = new Date(cfg.generatedAt);
+              genAt.textContent = `Generated: ${date.toLocaleString("zh-TW")}`;
+              show("generated-at");
+            } catch (e) {
+              genAt.textContent = `Generated: ${cfg.generatedAt}`;
+              show("generated-at");
+            }
+          }
+        }
+      })();
+    </script>
+  </body>
+</html>

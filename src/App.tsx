@@ -1,7 +1,13 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Header } from './components/layout/Header';
 import { MainLayout } from './components/layout/MainLayout';
-import { PreRegConfig } from './types/config';
+import { ImageVariant, PreRegConfig } from './types/config';
+
+const createEmptyVariant = (): ImageVariant => ({
+  desktop: null,
+  tablet: null,
+  mobile: null,
+});
 
 const initialConfig: PreRegConfig = {
   basicInfo: {
@@ -12,28 +18,28 @@ const initialConfig: PreRegConfig = {
     longDescription: '',
     genreTags: [],
   },
-  preRegSettings: {
+  preregSettings: {
     startDate: '',
     endDate: '',
     expectedLaunchDate: '',
     showCountdown: false,
   },
   theme: {
-    type: 'adventure-ocean',
+    template: 'adventure-default',
     primaryColor: '#3B82F6',
     secondaryColor: '#8B5CF6',
     buttonColor: '#10B981',
     fontFamily: 'Noto Sans',
   },
   assets: {
-    heroBackground: {},
-    ctaButtonImage: {},
+    heroBackground: createEmptyVariant(),
+    mainCtaButton: createEmptyVariant(),
     gameLogo: null,
     platformIcons: {
       ios: null,
       android: null,
     },
-    otherIcons: {},
+    genericIcons: createEmptyVariant(),
   },
 };
 

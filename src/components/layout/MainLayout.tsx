@@ -30,8 +30,8 @@ export const MainLayout: React.FC<MainLayoutProps> = ({
             onChange={(data) => onConfigChange({ ...config, basicInfo: data })}
           />
           <PreRegSettingsSection
-            data={config.preRegSettings}
-            onChange={(data) => onConfigChange({ ...config, preRegSettings: data })}
+            data={config.preregSettings}
+            onChange={(data) => onConfigChange({ ...config, preregSettings: data })}
           />
           <ThemeSection
             data={config.theme}

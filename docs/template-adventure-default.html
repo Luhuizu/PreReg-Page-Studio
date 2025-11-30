@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <title>Game Pre-registration – Template A (Adventure / Ocean)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Optional fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700&family=Noto+Sans:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-color: #3b82f6;
+        --secondary-color: #8b5cf6;
+        --button-color: #10b981;
+      }
+      body {
+        font-family: "Noto Sans TC", "Noto Sans", system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+      }
+      /* Ocean wave animation */
+      @keyframes wave {
+        0%, 100% { transform: translateX(0) translateY(0); }
+        50% { transform: translateX(-25px) translateY(-10px); }
+      }
+      .wave-animation {
+        animation: wave 8s ease-in-out infinite;
+      }
+      /* Smooth scroll */
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+  <body class="bg-gradient-to-b from-slate-950 via-blue-950/20 to-slate-950 text-slate-50">
+    <!-- Hero Section -->
+    <header
+      class="relative overflow-hidden min-h-[85vh] sm:min-h-[90vh] flex items-center justify-center"
+    >
+      <!-- Responsive Background Images -->
+      <div
+        id="hero-bg-desktop"
+        class="hidden lg:block absolute inset-0 bg-slate-900 bg-center bg-cover bg-no-repeat"
+      ></div>
+      <div
+        id="hero-bg-tablet"
+        class="hidden md:block lg:hidden absolute inset-0 bg-slate-900 bg-center bg-cover bg-no-repeat"
+      ></div>
+      <div
+        id="hero-bg-mobile"
+        class="block md:hidden absolute inset-0 bg-slate-900 bg-center bg-cover bg-no-repeat"
+      ></div>
+      
+      <!-- Gradient Overlay for Ocean Theme -->
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-blue-900/60 via-slate-950/70 to-slate-950/95"
+      ></div>
+      
+      <!-- Decorative Ocean Waves -->
+      <div
+        class="pointer-events-none absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-blue-500/20 via-transparent to-transparent opacity-50 wave-animation"
+      ></div>
+      <div
+        class="pointer-events-none absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-cyan-400/15 via-transparent to-transparent opacity-40"
+        style="animation-delay: -2s;"
+      ></div>
+
+      <!-- Hero Content -->
+      <div
+        class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 w-full"
+      >
+        <div class="flex flex-col items-center text-center space-y-6 sm:space-y-8">
+          <!-- Game Logo (if available) -->
+          <div id="game-logo-container" class="hidden">
+            <img
+              id="game-logo"
+              src=""
+              alt="Game Logo"
+              class="h-20 sm:h-24 lg:h-28 w-auto mx-auto drop-shadow-2xl"
+            />
+          </div>
+
+          <!-- Genre Tags -->
+          <div id="genre-tags-container" class="flex flex-wrap justify-center gap-2 hidden">
+            <!-- Genre chips will be inserted here -->
+          </div>
+
+          <!-- Game Title -->
+          <div class="space-y-3 sm:space-y-4">
+            <h1
+              id="game-title"
+              class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight leading-tight drop-shadow-[0_4px_20px_rgba(0,0,0,0.8)]"
+            >
+              <span id="game-title-chinese" class="block"></span>
+              <span id="game-title-english" class="block text-3xl sm:text-4xl lg:text-5xl xl:text-6xl opacity-90"></span>
+            </h1>
+
+            <!-- Slogan -->
+            <p
+              id="slogan"
+              class="text-lg sm:text-xl lg:text-2xl text-slate-100/95 font-semibold max-w-3xl mx-auto drop-shadow-lg"
+            ></p>
+          </div>
+
+          <!-- Short Description -->
+          <p
+            id="short-description"
+            class="text-sm sm:text-base lg:text-lg text-slate-200/90 max-w-2xl mx-auto leading-relaxed"
+          ></p>
+
+          <!-- CTA Button & Platform Icons -->
+          <div class="flex flex-col items-center gap-4 sm:gap-6 pt-2">
+            <button
+              id="cta-button"
+              class="px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-base sm:text-lg font-bold shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(16,185,129,0.5)] focus:outline-none focus:ring-4 focus:ring-offset-4 focus:ring-offset-slate-950"
+            >
+              立即預約 / Pre-register Now
+            </button>
+
+            <!-- Platform Icons -->
+            <div id="platform-icons-container" class="flex items-center gap-3 sm:gap-4 hidden">
+              <span class="text-xs sm:text-sm text-slate-300/80">可預約平台：</span>
+              <div class="flex items-center gap-2 sm:gap-3">
+                <a
+                  id="ios-link"
+                  href="#"
+                  class="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-950 rounded-lg"
+                >
+                  <img
+                    id="ios-icon"
+                    src=""
+                    alt="iOS"
+                    class="h-8 sm:h-10 w-auto rounded-lg shadow-lg ring-1 ring-white/20"
+                  />
+                </a>
+                <a
+                  id="android-link"
+                  href="#"
+                  class="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-950 rounded-lg"
+                >
+                  <img
+                    id="android-icon"
+                    src=""
+                    alt="Android"
+                    class="h-8 sm:h-10 w-auto rounded-lg shadow-lg ring-1 ring-white/20"
+                  />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Pre-registration Campaign Info Section -->
+    <section
+      id="campaign-info-section"
+      class="relative bg-gradient-to-b from-slate-950 via-slate-900/50 to-slate-950 py-12 sm:py-16 border-y border-slate-800/50"
+    >
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-slate-900/60 backdrop-blur-sm border border-blue-500/20 rounded-2xl p-6 sm:p-8 shadow-xl">
+          <h2 class="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+            預約活動資訊 / Campaign Information
+          </h2>
+          
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6">
+            <!-- Start Date -->
+            <div id="start-date-card" class="bg-slate-800/60 rounded-xl p-4 border border-blue-500/20 hidden">
+              <div class="text-xs sm:text-sm text-slate-400 mb-1">開始日期</div>
+              <div id="start-date" class="text-base sm:text-lg font-semibold text-blue-300"></div>
+            </div>
+            
+            <!-- End Date -->
+            <div id="end-date-card" class="bg-slate-800/60 rounded-xl p-4 border border-blue-500/20 hidden">
+              <div class="text-xs sm:text-sm text-slate-400 mb-1">結束日期</div>
+              <div id="end-date" class="text-base sm:text-lg font-semibold text-blue-300"></div>
+            </div>
+            
+            <!-- Expected Launch Date -->
+            <div id="launch-date-card" class="bg-slate-800/60 rounded-xl p-4 border border-cyan-500/20 hidden">
+              <div class="text-xs sm:text-sm text-slate-400 mb-1">預計上市日期</div>
+              <div id="expected-launch-date" class="text-base sm:text-lg font-semibold text-cyan-300"></div>
+            </div>
+          </div>
+
+          <!-- Countdown Timer -->
+          <div id="countdown-container" class="hidden">
+            <div class="text-center mb-4">
+              <div class="text-sm sm:text-base text-slate-300 mb-3">距離預約結束還有</div>
+              <div id="countdown-timer" class="flex justify-center gap-3 sm:gap-4 lg:gap-6">
+                <div class="flex flex-col items-center bg-slate-800/80 rounded-xl p-3 sm:p-4 min-w-[70px] sm:min-w-[80px] border border-blue-500/30">
+                  <div id="countdown-days" class="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-400">00</div>
+                  <div class="text-xs sm:text-sm text-slate-400 mt-1">天</div>
+                </div>
+                <div class="flex flex-col items-center bg-slate-800/80 rounded-xl p-3 sm:p-4 min-w-[70px] sm:min-w-[80px] border border-blue-500/30">
+                  <div id="countdown-hours" class="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-400">00</div>
+                  <div class="text-xs sm:text-sm text-slate-400 mt-1">時</div>
+                </div>
+                <div class="flex flex-col items-center bg-slate-800/80 rounded-xl p-3 sm:p-4 min-w-[70px] sm:min-w-[80px] border border-blue-500/30">
+                  <div id="countdown-minutes" class="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-400">00</div>
+                  <div class="text-xs sm:text-sm text-slate-400 mt-1">分</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Story / Description Section -->
+    <main class="bg-slate-950">
+      <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+        <div class="bg-slate-900/60 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-6 sm:p-8 lg:p-10 shadow-xl">
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 text-center sm:text-left">
+            <span class="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+              遊戲介紹 / Game Overview
+            </span>
+          </h2>
+          <div
+            id="long-description"
+            class="text-sm sm:text-base lg:text-lg leading-relaxed text-slate-200/90 whitespace-pre-line space-y-4"
+          ></div>
+        </div>
+      </section>
+
+      <!-- Pre-registration Rewards Section -->
+      <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 sm:pb-16 lg:pb-20">
+        <div class="bg-gradient-to-br from-slate-900/80 to-blue-950/40 backdrop-blur-sm border border-cyan-500/25 rounded-2xl p-6 sm:p-8 lg:p-10 shadow-xl">
+          <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 sm:mb-8 text-center">
+            <span class="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+              預約獎勵 / Pre-registration Rewards
+            </span>
+          </h3>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            <!-- Reward cards will be populated or show placeholder -->
+            <div class="bg-slate-800/60 rounded-xl p-4 sm:p-5 border border-cyan-500/20">
+              <div class="text-2xl mb-2">🎁</div>
+              <div class="text-sm sm:text-base font-semibold text-cyan-300 mb-2">登入獎勵</div>
+              <div class="text-xs sm:text-sm text-slate-300/80">預約即可獲得基礎獎勵</div>
+            </div>
+            <div class="bg-slate-800/60 rounded-xl p-4 sm:p-5 border border-cyan-500/20">
+              <div class="text-2xl mb-2">⭐</div>
+              <div class="text-sm sm:text-base font-semibold text-cyan-300 mb-2">階段獎勵</div>
+              <div class="text-xs sm:text-sm text-slate-300/80">達成指定預約人數解鎖</div>
+            </div>
+            <div class="bg-slate-800/60 rounded-xl p-4 sm:p-5 border border-cyan-500/20 sm:col-span-2 lg:col-span-1">
+              <div class="text-2xl mb-2">🏆</div>
+              <div class="text-sm sm:text-base font-semibold text-cyan-300 mb-2">專屬獎勵</div>
+              <div class="text-xs sm:text-sm text-slate-300/80">預約玩家專屬內容</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800/80 bg-slate-950">
+      <div
+        class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4"
+      >
+        <div class="flex flex-col gap-1">
+          <span class="text-xs sm:text-sm text-slate-500"
+            >© 2025 Your Company. All rights reserved.</span
+          >
+          <span id="generated-at" class="text-xs text-slate-600 hidden"></span>
+        </div>
+        <span class="text-xs sm:text-sm text-slate-500"
+          >PreReg Page Studio · Template A / Adventure · Ocean</span
+        >
+      </div>
+    </footer>
+
+    <!-- Config JSON Injection Point -->
+    <script id="prereg-config" type="application/json">
+{{CONFIG_JSON}}
+    </script>
+
+    <!-- Runtime JavaScript -->
+    <script>
+      (function () {
+        const script = document.getElementById("prereg-config");
+        if (!script) return;
+        let cfg;
+        try {
+          cfg = JSON.parse(script.textContent);
+        } catch (e) {
+          console.error("Invalid config JSON", e);
+          return;
+        }
+
+        const data = cfg.data || cfg;
+        const basic = data.basicInfo || {};
+        const prereg = data.preregSettings || {};
+        const theme = data.theme || {};
+        const assets = data.assets || {};
+
+        const $ = (id) => document.getElementById(id);
+        const setText = (id, value) => {
+          const el = $(id);
+          if (el && value) el.textContent = value;
+        };
+        const setHTML = (id, value) => {
+          const el = $(id);
+          if (el && value) el.innerHTML = value;
+        };
+        const show = (id) => {
+          const el = $(id);
+          if (el) el.classList.remove("hidden");
+        };
+        const hide = (id) => {
+          const el = $(id);
+          if (el) el.classList.add("hidden");
+        };
+
+        // Apply theme colors
+        const primary = theme.primaryColor || "#3B82F6";
+        const secondary = theme.secondaryColor || "#8B5CF6";
+        const button = theme.buttonColor || "#10B981";
+        const root = document.documentElement;
+        root.style.setProperty("--primary-color", primary);
+        root.style.setProperty("--secondary-color", secondary);
+        root.style.setProperty("--button-color", button);
+
+        // Apply font family
+        if (theme.fontFamily) {
+          const fontStack = theme.fontFamily + ", " + document.body.style.fontFamily;
+          document.body.style.fontFamily = fontStack;
+        }
+
+        // Game Title
+        const titleChinese = basic.gameNameChinese || "";
+        const titleEnglish = basic.gameNameEnglish || "";
+        if (titleChinese) {
+          setText("game-title-chinese", titleChinese);
+        } else {
+          $( "game-title-chinese").style.display = "none";
+        }
+        if (titleEnglish) {
+          setText("game-title-english", titleEnglish);
+        } else {
+          $( "game-title-english").style.display = "none";
+        }
+        if (!titleChinese && !titleEnglish) {
+          setText("game-title-chinese", "Game Pre-registration");
+        }
+
+        // Slogan
+        setText("slogan", basic.slogan || "");
+        if (!basic.slogan) {
+          $( "slogan").style.display = "none";
+        }
+
+        // Short Description
+        setText("short-description", basic.shortDescription || "");
+        if (!basic.shortDescription) {
+          $( "short-description").style.display = "none";
+        }
+
+        // Long Description
+        const longDesc = basic.longDescription || "";
+        if (longDesc) {
+          // Basic URL detection and linkification
+          const urlRegex = /(https?:\/\/[^\s]+)/g;
+          const linkedDesc = longDesc.replace(urlRegex, '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 underline">$1</a>');
+          setHTML("long-description", linkedDesc);
+        } else {
+          setText("long-description", "遊戲介紹內容將顯示於此。");
+        }
+
+        // Genre Tags
+        const genreTags = basic.genreTags || [];
+        const genreContainer = $("genre-tags-container");
+        if (genreContainer && genreTags.length > 0) {
+          genreContainer.innerHTML = "";
+          genreTags.forEach((tag) => {
+            const chip = document.createElement("span");
+            chip.className = "px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium bg-blue-500/15 border border-blue-400/40 text-blue-200 backdrop-blur-sm";
+            chip.textContent = tag;
+            genreContainer.appendChild(chip);
+          });
+          show("genre-tags-container");
+        } else {
+          hide("genre-tags-container");
+        }
+
+        // CTA Button
+        const cta = $("cta-button");
+        if (cta) {
+          cta.style.backgroundColor = button;
+          cta.style.color = "#ffffff";
+          cta.style.borderColor = button;
+        }
+
+        // Game Logo
+        const logoContainer = $("game-logo-container");
+        const gameLogo = $("game-logo");
+        if (assets.gameLogo) {
+          gameLogo.src = assets.gameLogo;
+          show("game-logo-container");
+        } else {
+          hide("game-logo-container");
+        }
+
+        // Hero Background Images (Responsive)
+        const heroDesktop = $("hero-bg-desktop");
+        const heroTablet = $("hero-bg-tablet");
+        const heroMobile = $("hero-bg-mobile");
+        
+        if (assets.heroBackground) {
+          if (assets.heroBackground.desktop && heroDesktop) {
+            heroDesktop.style.backgroundImage = `url("${assets.heroBackground.desktop}")`;
+          }
+          if (assets.heroBackground.tablet && heroTablet) {
+            heroTablet.style.backgroundImage = `url("${assets.heroBackground.tablet}")`;
+          }
+          if (assets.heroBackground.mobile && heroMobile) {
+            heroMobile.style.backgroundImage = `url("${assets.heroBackground.mobile}")`;
+          }
+        }
+
+        // Platform Icons
+        const platformContainer = $("platform-icons-container");
+        const iosIcon = $("ios-icon");
+        const androidIcon = $("android-icon");
+        let hasPlatforms = false;
+
+        if (assets.platformIcons) {
+          if (assets.platformIcons.ios && iosIcon) {
+            iosIcon.src = assets.platformIcons.ios;
+            hasPlatforms = true;
+          } else {
+            hide("ios-link");
+          }
+          if (assets.platformIcons.android && androidIcon) {
+            androidIcon.src = assets.platformIcons.android;
+            hasPlatforms = true;
+          } else {
+            hide("android-link");
+          }
+        }
+
+        if (hasPlatforms) {
+          show("platform-icons-container");
+        } else {
+          hide("platform-icons-container");
+        }
+
+        // Pre-registration Dates
+        const formatDate = (dateStr) => {
+          if (!dateStr) return "";
+          try {
+            const date = new Date(dateStr);
+            return date.toLocaleDateString("zh-TW", {
+              year: "numeric",
+              month: "long",
+              day: "numeric"
+            });
+          } catch (e) {
+            return dateStr;
+          }
+        };
+
+        if (prereg.startDate) {
+          setText("start-date", formatDate(prereg.startDate));
+          show("start-date-card");
+        } else {
+          hide("start-date-card");
+        }
+
+        if (prereg.endDate) {
+          setText("end-date", formatDate(prereg.endDate));
+          show("end-date-card");
+        } else {
+          hide("end-date-card");
+        }
+
+        if (prereg.expectedLaunchDate) {
+          setText("expected-launch-date", formatDate(prereg.expectedLaunchDate));
+          show("launch-date-card");
+        } else {
+          hide("launch-date-card");
+        }
+
+        // Show campaign section if any date is present
+        const campaignSection = $("campaign-info-section");
+        if (!prereg.startDate && !prereg.endDate && !prereg.expectedLaunchDate) {
+          if (campaignSection) campaignSection.style.display = "none";
+        }
+
+        // Countdown Timer
+        const countdownContainer = $("countdown-container");
+        const countdownDays = $("countdown-days");
+        const countdownHours = $("countdown-hours");
+        const countdownMinutes = $("countdown-minutes");
+
+        function updateCountdown() {
+          if (!prereg.showCountdown || !prereg.endDate) {
+            if (countdownContainer) hide("countdown-container");
+            return;
+          }
+
+          try {
+            const endDate = new Date(prereg.endDate);
+            const now = new Date();
+            const diff = endDate - now;
+
+            if (diff <= 0) {
+              if (countdownDays) countdownDays.textContent = "00";
+              if (countdownHours) countdownHours.textContent = "00";
+              if (countdownMinutes) countdownMinutes.textContent = "00";
+              if (countdownContainer) hide("countdown-container");
+              return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+            if (countdownDays) countdownDays.textContent = String(days).padStart(2, "0");
+            if (countdownHours) countdownHours.textContent = String(hours).padStart(2, "0");
+            if (countdownMinutes) countdownMinutes.textContent = String(minutes).padStart(2, "0");
+            
+            if (countdownContainer) show("countdown-container");
+          } catch (e) {
+            console.error("Countdown error:", e);
+            if (countdownContainer) hide("countdown-container");
+          }
+        }
+
+        if (prereg.showCountdown && prereg.endDate) {
+          updateCountdown();
+          setInterval(updateCountdown, 60000); // Update every minute
+        } else {
+          if (countdownContainer) hide("countdown-container");
+        }
+
+        // Generated At
+        if (cfg.generatedAt) {
+          const genAt = $("generated-at");
+          if (genAt) {
+            try {
+              const date = new Date(cfg.generatedAt);
+              genAt.textContent = `Config generated at: ${date.toLocaleString("zh-TW")}`;
+              show("generated-at");
+            } catch (e) {
+              genAt.textContent = `Config generated at: ${cfg.generatedAt}`;
+              show("generated-at");
+            }
+          }
+        }
+      })();
+    </script>
+  </body>
+</html>

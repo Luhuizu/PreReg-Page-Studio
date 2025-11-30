@@ -7,7 +7,7 @@ interface PreviewPanelProps {
 
 export const PreviewPanel: React.FC<PreviewPanelProps> = ({ config }) => {
   const themeName =
-    config.theme.type === 'adventure-ocean'
+    config.theme.template === 'adventure'
       ? 'Adventure / Ocean'
       : 'Palace / Ancient';
 

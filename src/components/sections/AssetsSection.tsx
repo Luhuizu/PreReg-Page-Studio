@@ -2,12 +2,36 @@ import React, { useRef } from 'react';
 import { FormCard } from '../shared/FormCard';
 import { SectionTitle } from '../shared/SectionTitle';
 import { ImageUploadGroup } from '../shared/ImageUploadGroup';
-import { Assets } from '../../types/config';
+import { AssetsConfig, ImageVariant } from '../../types/config';
 
 interface AssetsSectionProps {
-  data: Assets;
-  onChange: (data: Assets) => void;
+  data: AssetsConfig;
+  onChange: (data: AssetsConfig) => void;
 }
+
+type VariantField = 'heroBackground' | 'mainCtaButton' | 'genericIcons';
+
+const asFile = (value?: ImageVariant[keyof ImageVariant]) =>
+  value instanceof File ? value : null;
+
+const assetLabel = (value?: string | File | null) => {
+  if (!value) return null;
+  return value instanceof File ? value.name : value;
+};
+
+const updateVariant = (
+  variant: ImageVariant | undefined,
+  size: keyof ImageVariant,
+  file: File | null
+): ImageVariant => {
+  const next: ImageVariant = { ...(variant ?? {}) };
+  if (file) {
+    next[size] = file;
+  } else {
+    delete next[size];
+  }
+  return next;
+};
 
 export const AssetsSection: React.FC<AssetsSectionProps> = ({ data, onChange }) => {
   const logoInputRef = useRef<HTMLInputElement>(null);
@@ -15,16 +39,13 @@ export const AssetsSection: React.FC<AssetsSectionProps> = ({ data, onChange }) 
   const androidInputRef = useRef<HTMLInputElement>(null);
 
   const updateImageSet = (
-    field: 'heroBackground' | 'ctaButtonImage' | 'otherIcons',
+    field: VariantField,
     size: 'desktop' | 'tablet' | 'mobile',
     file: File | null
   ) => {
     onChange({
       ...data,
-      [field]: {
-        ...data[field],
-        [size]: file,
-      },
+      [field]: updateVariant(data[field], size, file),
     });
   };
 
@@ -54,9 +75,9 @@ export const AssetsSection: React.FC<AssetsSectionProps> = ({ data, onChange }) 
         <ImageUploadGroup
           label="Hero Background"
           required
-          desktopFile={data.heroBackground.desktop}
-          tabletFile={data.heroBackground.tablet}
-          mobileFile={data.heroBackground.mobile}
+          desktopFile={asFile(data.heroBackground.desktop)}
+          tabletFile={asFile(data.heroBackground.tablet)}
+          mobileFile={asFile(data.heroBackground.mobile)}
           onDesktopChange={(file) => updateImageSet('heroBackground', 'desktop', file)}
           onTabletChange={(file) => updateImageSet('heroBackground', 'tablet', file)}
           onMobileChange={(file) => updateImageSet('heroBackground', 'mobile', file)}
@@ -65,12 +86,12 @@ export const AssetsSection: React.FC<AssetsSectionProps> = ({ data, onChange }) 
         <ImageUploadGroup
           label="Main Call-to-Action Button Image"
           required
-          desktopFile={data.ctaButtonImage.desktop}
-          tabletFile={data.ctaButtonImage.tablet}
-          mobileFile={data.ctaButtonImage.mobile}
-          onDesktopChange={(file) => updateImageSet('ctaButtonImage', 'desktop', file)}
-          onTabletChange={(file) => updateImageSet('ctaButtonImage', 'tablet', file)}
-          onMobileChange={(file) => updateImageSet('ctaButtonImage', 'mobile', file)}
+          desktopFile={asFile(data.mainCtaButton.desktop)}
+          tabletFile={asFile(data.mainCtaButton.tablet)}
+          mobileFile={asFile(data.mainCtaButton.mobile)}
+          onDesktopChange={(file) => updateImageSet('mainCtaButton', 'desktop', file)}
+          onTabletChange={(file) => updateImageSet('mainCtaButton', 'tablet', file)}
+          onMobileChange={(file) => updateImageSet('mainCtaButton', 'mobile', file)}
         />
 
         <div>
@@ -93,12 +114,12 @@ export const AssetsSection: React.FC<AssetsSectionProps> = ({ data, onChange }) 
             >
               Upload
             </button>
-            {data.gameLogo && (
+            {assetLabel(data.gameLogo) && (
               <span className="text-sm text-gray-600 truncate flex-1">
-                {data.gameLogo.name}
+                {assetLabel(data.gameLogo)}
               </span>
             )}
-            {data.gameLogo && (
+            {assetLabel(data.gameLogo) && (
               <button
                 type="button"
                 onClick={() => onChange({ ...data, gameLogo: null })}
@@ -135,12 +156,12 @@ export const AssetsSection: React.FC<AssetsSectionProps> = ({ data, onChange }) 
                 >
                   Upload
                 </button>
-                {data.platformIcons.ios && (
+                {assetLabel(data.platformIcons.ios) && (
                   <span className="text-sm text-gray-600 truncate flex-1">
-                    {data.platformIcons.ios.name}
+                    {assetLabel(data.platformIcons.ios)}
                   </span>
                 )}
-                {data.platformIcons.ios && (
+                {assetLabel(data.platformIcons.ios) && (
                   <button
                     type="button"
                     onClick={() =>
@@ -177,12 +198,12 @@ export const AssetsSection: React.FC<AssetsSectionProps> = ({ data, onChange }) 
                 >
                   Upload
                 </button>
-                {data.platformIcons.android && (
+                {assetLabel(data.platformIcons.android) && (
                   <span className="text-sm text-gray-600 truncate flex-1">
-                    {data.platformIcons.android.name}
+                    {assetLabel(data.platformIcons.android)}
                   </span>
                 )}
-                {data.platformIcons.android && (
+                {assetLabel(data.platformIcons.android) && (
                   <button
                     type="button"
                     onClick={() =>
@@ -204,12 +225,12 @@ export const AssetsSection: React.FC<AssetsSectionProps> = ({ data, onChange }) 
         <ImageUploadGroup
           label="Other Generic Icons"
           description="For rewards, steps, etc."
-          desktopFile={data.otherIcons.desktop}
-          tabletFile={data.otherIcons.tablet}
-          mobileFile={data.otherIcons.mobile}
-          onDesktopChange={(file) => updateImageSet('otherIcons', 'desktop', file)}
-          onTabletChange={(file) => updateImageSet('otherIcons', 'tablet', file)}
-          onMobileChange={(file) => updateImageSet('otherIcons', 'mobile', file)}
+          desktopFile={asFile(data.genericIcons?.desktop)}
+          tabletFile={asFile(data.genericIcons?.tablet)}
+          mobileFile={asFile(data.genericIcons?.mobile)}
+          onDesktopChange={(file) => updateImageSet('genericIcons', 'desktop', file)}
+          onTabletChange={(file) => updateImageSet('genericIcons', 'tablet', file)}
+          onMobileChange={(file) => updateImageSet('genericIcons', 'mobile', file)}
         />
       </div>
     </FormCard>

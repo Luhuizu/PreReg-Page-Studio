@@ -1,3 +1,9 @@
+// src/types/config.ts
+
+//export type TemplateId = 'adventure' | 'palace';
+export type TemplateId = 'adventure-default' | 'palace-default' | (string & {});
+
+
 export interface BasicInfo {
   gameNameChinese: string;
   gameNameEnglish: string;
@@ -8,43 +14,49 @@ export interface BasicInfo {
 }
 
 export interface PreRegSettings {
-  startDate: string;
+  startDate: string;          // yyyy-mm-dd or empty string
   endDate: string;
   expectedLaunchDate: string;
   showCountdown: boolean;
 }
 
-export type ThemeType = 'adventure-ocean' | 'palace-ancient';
-
-export interface Theme {
-  type: ThemeType;
+export interface ThemeConfig {
+  template: TemplateId;       // 'adventure' | 'palace' | future templates
   primaryColor: string;
   secondaryColor: string;
   buttonColor: string;
   fontFamily: string;
 }
 
-export interface ImageSet {
-  desktop?: File | null;
-  tablet?: File | null;
-  mobile?: File | null;
+export type ImageValue = string | File | null;
+
+export interface ImageVariant {
+  desktop?: ImageValue;
+  tablet?: ImageValue;
+  mobile?: ImageValue;
 }
 
-export interface Assets {
-  heroBackground: ImageSet;
-  ctaButtonImage: ImageSet;
-  gameLogo?: File | null;
+export interface AssetsConfig {
+  heroBackground: ImageVariant;
+  mainCtaButton: ImageVariant;
+  gameLogo?: ImageValue;
   platformIcons: {
-    ios?: File | null;
-    android?: File | null;
+    ios?: ImageValue;
+    android?: ImageValue;
   };
-  otherIcons: ImageSet;
+  genericIcons?: ImageVariant;
 }
 
 export interface PreRegConfig {
   basicInfo: BasicInfo;
-  preRegSettings: PreRegSettings;
-  theme: Theme;
-  assets: Assets;
+  preregSettings: PreRegSettings;
+  theme: ThemeConfig;
+  assets: AssetsConfig;
 }
 
+export interface StaticPageConfig {
+  version: '1.0';
+  generatedAt: string;
+  template: TemplateId;
+  data: PreRegConfig;
+}

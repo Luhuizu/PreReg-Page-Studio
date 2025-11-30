@@ -1,17 +1,17 @@
 import React from 'react';
 import { FormCard } from '../shared/FormCard';
 import { SectionTitle } from '../shared/SectionTitle';
-import { Theme } from '../../types/config';
+import { TemplateId, ThemeConfig } from '../../types/config';
 
 interface ThemeSectionProps {
-  data: Theme;
-  onChange: (data: Theme) => void;
+  data: ThemeConfig;
+  onChange: (data: ThemeConfig) => void;
 }
 
 const FONT_OPTIONS = ['Noto Sans', 'Source Han Sans', 'System default'];
 
 export const ThemeSection: React.FC<ThemeSectionProps> = ({ data, onChange }) => {
-  const updateField = <K extends keyof Theme>(field: K, value: Theme[K]) => {
+  const updateField = <K extends keyof ThemeConfig>(field: K, value: ThemeConfig[K]) => {
     onChange({ ...data, [field]: value });
   };
 
@@ -28,9 +28,9 @@ export const ThemeSection: React.FC<ThemeSectionProps> = ({ data, onChange }) =>
               <input
                 type="radio"
                 name="theme"
-                value="adventure-ocean"
-                checked={data.type === 'adventure-ocean'}
-                onChange={(e) => updateField('type', e.target.value as Theme['type'])}
+                value="adventure-default"
+                checked={data.template === 'adventure-default'}
+                onChange={(e) => updateField('template', e.target.value as TemplateId)}
                 className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
               />
               <span className="ml-2 text-sm text-gray-700">
@@ -41,9 +41,9 @@ export const ThemeSection: React.FC<ThemeSectionProps> = ({ data, onChange }) =>
               <input
                 type="radio"
                 name="theme"
-                value="palace-ancient"
-                checked={data.type === 'palace-ancient'}
-                onChange={(e) => updateField('type', e.target.value as Theme['type'])}
+                value="palace-default"
+                checked={data.template === 'palace-default'}
+                onChange={(e) => updateField('template', e.target.value as TemplateId)}
                 className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
               />
               <span className="ml-2 text-sm text-gray-700">
