@@ -232,6 +232,128 @@ export const AssetsSection: React.FC<AssetsSectionProps> = ({ data, onChange }) 
           onTabletChange={(file) => updateImageSet('genericIcons', 'tablet', file)}
           onMobileChange={(file) => updateImageSet('genericIcons', 'mobile', file)}
         />
+
+        {/* Game Screenshots Section */}
+        <div className="border-t border-gray-200 pt-6">
+          <div className="flex items-center justify-between mb-4">
+            <label className="block text-sm font-medium text-gray-700">
+              遊戲畫面 / Game Screenshots
+            </label>
+            <button
+              type="button"
+              onClick={() => {
+                const screenshots = data.screenshots || [];
+                if (screenshots.length < 5) {
+                  onChange({
+                    ...data,
+                    screenshots: [
+                      ...screenshots,
+                      { desktop: null, tablet: null, mobile: null, caption: '' },
+                    ],
+                  });
+                }
+              }}
+              disabled={(data.screenshots || []).length >= 5}
+              className="px-4 py-2 bg-blue-500 hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white rounded-md text-sm font-medium transition-colors"
+            >
+              新增截圖
+            </button>
+          </div>
+          <p className="text-xs text-gray-500 mb-4">
+            最多可新增 5 張截圖，每張截圖可上傳桌面版、平板版、手機版圖片（桌面版為必填）
+          </p>
+          <div className="space-y-6">
+            {(data.screenshots || []).map((screenshot, index) => (
+              <div
+                key={index}
+                className="bg-gray-50 rounded-lg p-4 border border-gray-200"
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <h4 className="text-sm font-semibold text-gray-700">
+                    截圖 {index + 1} / Screenshot {index + 1}
+                  </h4>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const screenshots = data.screenshots || [];
+                      onChange({
+                        ...data,
+                        screenshots: screenshots.filter((_, i) => i !== index),
+                      });
+                    }}
+                    className="text-red-500 hover:text-red-700 text-sm font-medium"
+                  >
+                    移除
+                  </button>
+                </div>
+                <div className="space-y-4 pl-4 border-l-2 border-gray-200">
+                  <ImageUploadGroup
+                    label="截圖圖片"
+                    required
+                    desktopFile={screenshot.desktop instanceof File ? screenshot.desktop : null}
+                    tabletFile={screenshot.tablet instanceof File ? screenshot.tablet : null}
+                    mobileFile={screenshot.mobile instanceof File ? screenshot.mobile : null}
+                    onDesktopChange={(file) => {
+                      const screenshots = data.screenshots || [];
+                      const updated = [...screenshots];
+                      updated[index] = {
+                        ...updated[index],
+                        desktop: file,
+                      };
+                      onChange({ ...data, screenshots: updated });
+                    }}
+                    onTabletChange={(file) => {
+                      const screenshots = data.screenshots || [];
+                      const updated = [...screenshots];
+                      updated[index] = {
+                        ...updated[index],
+                        tablet: file,
+                      };
+                      onChange({ ...data, screenshots: updated });
+                    }}
+                    onMobileChange={(file) => {
+                      const screenshots = data.screenshots || [];
+                      const updated = [...screenshots];
+                      updated[index] = {
+                        ...updated[index],
+                        mobile: file,
+                      };
+                      onChange({ ...data, screenshots: updated });
+                    }}
+                    desktopSize="1920x1080"
+                    tabletSize="1280x720"
+                    mobileSize="750x1334"
+                  />
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      說明文字（選填）
+                    </label>
+                    <input
+                      type="text"
+                      value={screenshot.caption || ''}
+                      onChange={(e) => {
+                        const screenshots = data.screenshots || [];
+                        const updated = [...screenshots];
+                        updated[index] = {
+                          ...updated[index],
+                          caption: e.target.value,
+                        };
+                        onChange({ ...data, screenshots: updated });
+                      }}
+                      placeholder="輸入截圖說明..."
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
+            {(!data.screenshots || data.screenshots.length === 0) && (
+              <p className="text-sm text-gray-500 text-center py-4">
+                尚未新增任何截圖
+              </p>
+            )}
+          </div>
+        </div>
       </div>
     </FormCard>
   );

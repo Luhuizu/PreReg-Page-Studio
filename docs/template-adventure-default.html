@@ -226,6 +226,47 @@
         </div>
       </section>
 
+      <!-- Game Screenshots Section -->
+      <section id="screenshots-section" class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 hidden">
+        <div class="bg-slate-900/60 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-6 sm:p-8 lg:p-10 shadow-xl">
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 text-center">
+            <span class="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+              遊戲畫面 / Screenshots
+            </span>
+          </h2>
+          
+          <div class="relative">
+            <!-- Screenshots Carousel Container -->
+            <div id="screenshots-carousel" class="relative overflow-hidden rounded-xl">
+              <div id="screenshots-track" class="flex transition-transform duration-500 ease-in-out"></div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <button
+              id="screenshots-prev"
+              class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-10 bg-slate-800/80 hover:bg-slate-700/90 text-white rounded-full p-2 sm:p-3 shadow-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              aria-label="Previous screenshot"
+            >
+              <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button
+              id="screenshots-next"
+              class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-10 bg-slate-800/80 hover:bg-slate-700/90 text-white rounded-full p-2 sm:p-3 shadow-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              aria-label="Next screenshot"
+            >
+              <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+
+            <!-- Dots Indicator -->
+            <div id="screenshots-dots" class="flex justify-center gap-2 mt-4"></div>
+          </div>
+        </div>
+      </section>
+
       <!-- Pre-registration Rewards Section -->
       <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 sm:pb-16 lg:pb-20">
         <div class="bg-gradient-to-br from-slate-900/80 to-blue-950/40 backdrop-blur-sm border border-cyan-500/25 rounded-2xl p-6 sm:p-8 lg:p-10 shadow-xl">
@@ -550,6 +591,143 @@
               show("generated-at");
             }
           }
+        }
+
+        // Screenshots Carousel
+        const screenshotsSection = $("screenshots-section");
+        const screenshots = assets.screenshots || [];
+        if (screenshots.length > 0 && screenshotsSection) {
+          const track = $("screenshots-track");
+          const dotsContainer = $("screenshots-dots");
+          const prevBtn = $("screenshots-prev");
+          const nextBtn = $("screenshots-next");
+          
+          let currentIndex = 0;
+
+          // Helper to get the best image URL for current viewport
+          const getImageUrl = (screenshot) => {
+            if (!screenshot) return null;
+            const width = window.innerWidth;
+            if (width < 768 && screenshot.mobile) return screenshot.mobile;
+            if (width < 1024 && screenshot.tablet) return screenshot.tablet;
+            return screenshot.desktop || screenshot.tablet || screenshot.mobile;
+          };
+
+          // Build carousel items
+          screenshots.forEach((screenshot, index) => {
+            const imageUrl = getImageUrl(screenshot);
+            if (!imageUrl) return;
+
+            const slide = document.createElement("div");
+            slide.className = "min-w-full flex-shrink-0";
+            slide.innerHTML = `
+              <div class="relative">
+                <img
+                  src="${imageUrl}"
+                  alt="Screenshot ${index + 1}"
+                  class="w-full h-auto rounded-lg object-contain max-h-[600px] mx-auto"
+                  loading="lazy"
+                />
+                ${screenshot.caption ? `
+                  <div class="mt-4 text-center text-sm sm:text-base text-slate-300/90 px-4">
+                    ${screenshot.caption}
+                  </div>
+                ` : ''}
+              </div>
+            `;
+            if (track) track.appendChild(slide);
+
+            // Create dot indicator
+            const dot = document.createElement("button");
+            dot.className = `w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 ${
+              index === 0 ? 'bg-blue-400' : 'bg-slate-600 hover:bg-slate-500'
+            }`;
+            dot.setAttribute("aria-label", `Go to screenshot ${index + 1}`);
+            dot.addEventListener("click", () => {
+              currentIndex = index;
+              updateCarousel();
+            });
+            if (dotsContainer) dotsContainer.appendChild(dot);
+          });
+
+          const updateCarousel = () => {
+            if (track) {
+              track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+            
+            // Update dots
+            if (dotsContainer) {
+              const dots = dotsContainer.querySelectorAll("button");
+              dots.forEach((dot, index) => {
+                if (index === currentIndex) {
+                  dot.className = "w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-200 bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400";
+                } else {
+                  dot.className = "w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-200 bg-slate-600 hover:bg-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-400";
+                }
+              });
+            }
+          };
+
+          if (prevBtn) {
+            prevBtn.addEventListener("click", () => {
+              currentIndex = (currentIndex - 1 + screenshots.length) % screenshots.length;
+              updateCarousel();
+            });
+          }
+
+          if (nextBtn) {
+            nextBtn.addEventListener("click", () => {
+              currentIndex = (currentIndex + 1) % screenshots.length;
+              updateCarousel();
+            });
+          }
+
+          // Auto-advance every 5 seconds (optional)
+          let autoAdvanceInterval = setInterval(() => {
+            if (screenshots.length > 1) {
+              currentIndex = (currentIndex + 1) % screenshots.length;
+              updateCarousel();
+            }
+          }, 5000);
+
+          // Pause auto-advance on hover
+          if (screenshotsSection) {
+            screenshotsSection.addEventListener("mouseenter", () => {
+              clearInterval(autoAdvanceInterval);
+            });
+            screenshotsSection.addEventListener("mouseleave", () => {
+              autoAdvanceInterval = setInterval(() => {
+                if (screenshots.length > 1) {
+                  currentIndex = (currentIndex + 1) % screenshots.length;
+                  updateCarousel();
+                }
+              }, 5000);
+            });
+          }
+
+          // Handle responsive image switching
+          let resizeTimeout;
+          window.addEventListener("resize", () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+              screenshots.forEach((screenshot, index) => {
+                const slide = track?.children[index];
+                if (slide) {
+                  const img = slide.querySelector("img");
+                  if (img) {
+                    const newUrl = getImageUrl(screenshot);
+                    if (newUrl && img.src !== newUrl) {
+                      img.src = newUrl;
+                    }
+                  }
+                }
+              });
+            }, 250);
+          });
+
+          show("screenshots-section");
+        } else {
+          if (screenshotsSection) hide("screenshots-section");
         }
       })();
     </script>

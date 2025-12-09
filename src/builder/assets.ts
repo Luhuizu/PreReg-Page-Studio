@@ -1,4 +1,4 @@
-import type { StaticPageConfig, ImageValue, ImageVariant } from '../types/config';
+import type { StaticPageConfig, ImageValue, ImageVariant, ScreenshotVariant } from '../types/config';
 
 const DATA_URL_REGEX = /^data:(.+);base64,(.*)$/;
 
@@ -143,6 +143,46 @@ function processImageVariant(
 }
 
 /**
+ * Processes a ScreenshotVariant, converting data URLs to asset files
+ */
+function processScreenshotVariant(
+  screenshot: ScreenshotVariant,
+  index: number,
+  files: AssetFile[]
+): ScreenshotVariant | null {
+  const desktop = processImageValue(
+    screenshot.desktop,
+    `screenshot-${String(index + 1).padStart(2, '0')}`,
+    files,
+    'desktop'
+  );
+  const tablet = processImageValue(
+    screenshot.tablet,
+    `screenshot-${String(index + 1).padStart(2, '0')}`,
+    files,
+    'tablet'
+  );
+  const mobile = processImageValue(
+    screenshot.mobile,
+    `screenshot-${String(index + 1).padStart(2, '0')}`,
+    files,
+    'mobile'
+  );
+
+  // If all variants are null/undefined, return null to skip this screenshot
+  if (!desktop && !tablet && !mobile) {
+    return null;
+  }
+
+  return {
+    desktop,
+    tablet,
+    mobile,
+    caption: screenshot.caption || undefined,
+  };
+}
+
+/**
  * Processes all assets in the config, converting data URLs to files
  */
 export function processAssets(config: StaticPageConfig): ProcessedAssets {
@@ -183,6 +223,13 @@ export function processAssets(config: StaticPageConfig): ProcessedAssets {
     files
   );
 
+  // Process screenshots
+  const screenshots = assets.screenshots
+    ? assets.screenshots
+        .map((screenshot, index) => processScreenshotVariant(screenshot, index, files))
+        .filter((s): s is ScreenshotVariant => s !== null)
+    : undefined;
+
   // Build updated config
   const updatedConfig: StaticPageConfig = {
     ...config,
@@ -202,6 +249,7 @@ export function processAssets(config: StaticPageConfig): ProcessedAssets {
         gameLogo,
         platformIcons,
         ...(genericIcons && { genericIcons }),
+        ...(screenshots && screenshots.length > 0 ? { screenshots } : {}),
       },
     },
   };

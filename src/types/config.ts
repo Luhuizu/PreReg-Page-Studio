@@ -36,6 +36,13 @@ export interface ImageVariant {
   mobile?: ImageValue;
 }
 
+export interface ScreenshotVariant {
+  desktop?: ImageValue | null;
+  tablet?: ImageValue | null;
+  mobile?: ImageValue | null;
+  caption?: string;
+}
+
 export interface AssetsConfig {
   heroBackground: ImageVariant;
   mainCtaButton: ImageVariant;
@@ -45,6 +52,7 @@ export interface AssetsConfig {
     android?: ImageValue;
   };
   genericIcons?: ImageVariant;
+  screenshots?: ScreenshotVariant[];
 }
 
 export interface PreRegConfig {

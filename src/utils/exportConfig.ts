@@ -1,4 +1,4 @@
-import { PreRegConfig, StaticPageConfig, ImageValue, ImageVariant } from '../types/config';
+import { PreRegConfig, StaticPageConfig, ImageValue, ImageVariant, ScreenshotVariant } from '../types/config';
 
 /**
  * Converts a File to a data URL
@@ -34,9 +34,24 @@ async function formatImageVariant(
   };
 }
 
+async function formatScreenshotVariant(
+  screenshot: ScreenshotVariant
+): Promise<ScreenshotVariant> {
+  return {
+    desktop: await formatAssetValue(screenshot.desktop),
+    tablet: await formatAssetValue(screenshot.tablet),
+    mobile: await formatAssetValue(screenshot.mobile),
+    caption: screenshot.caption || undefined,
+  };
+}
+
 async function formatAssetsForExport(
   assets: PreRegConfig['assets']
 ): Promise<PreRegConfig['assets']> {
+  const screenshots = assets.screenshots
+    ? await Promise.all(assets.screenshots.map(formatScreenshotVariant))
+    : undefined;
+
   return {
     heroBackground:
       (await formatImageVariant(assets.heroBackground)) || {
@@ -56,6 +71,7 @@ async function formatAssetsForExport(
       android: await formatAssetValue(assets.platformIcons.android),
     },
     genericIcons: await formatImageVariant(assets.genericIcons),
+    ...(screenshots && screenshots.length > 0 ? { screenshots } : {}),
   };
 }
 
